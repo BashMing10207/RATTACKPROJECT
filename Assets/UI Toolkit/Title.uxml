@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Title.uss?fileID=7433441132597879392&amp;guid=7e6893137f7285549ac5c7d337b24232&amp;type=3#Title" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0);">
+        <ui:Label tabindex="-1" text="RATTACK" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" enable-rich-text="true" style="font-size: 200px; -unity-font-style: bold-and-italic; -unity-text-align: upper-center; -unity-text-outline-color: rgb(5, 43, 122); -unity-text-outline-width: 5px; color: rgb(255, 0, 0); -unity-font: url(&quot;project://database/Assets/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=19e002423cd67e649bb03464f7759cb1&amp;type=3#NotInter-Regular&quot;); text-shadow: 25px 25px 5px rgb(0, 0, 0); letter-spacing: 0; word-spacing: 0; -unity-paragraph-spacing: 0; translate: 0 73px;" />
+        <ui:VisualElement name="Cotainer-btn" style="flex-grow: 1; align-items: center; justify-content: center; flex-direction: row;">
+            <ui:Button text="START" parse-escape-sequences="true" display-tooltip-when-elided="true" name="startBtn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Textures/WROck.jpg?fileID=21300000&amp;guid=5f93aa9de402d064cbbda195cb31f448&amp;type=3#WROck&quot;); background-color: rgb(203, 130, 36); -unity-background-image-tint-color: rgb(203, 130, 36);" />
+            <ui:Button text="EXIT" parse-escape-sequences="true" display-tooltip-when-elided="true" name="exitBtn" class="btn" style="background-image: url(&quot;project://database/Assets/02.Textures/WROck.jpg?fileID=21300000&amp;guid=5f93aa9de402d064cbbda195cb31f448&amp;type=3#WROck&quot;); -unity-background-image-tint-color: rgb(203, 130, 36);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
