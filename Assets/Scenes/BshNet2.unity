@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.28
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8960ebca0d73a6945967dcd04b42e13e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -246,6 +245,7 @@ MonoBehaviour:
   CodeOut: {fileID: 1964602098}
   roomUI: {fileID: 1490202225}
   gameUI: {fileID: 1460646623}
+  gameUI2: {fileID: 0}
 --- !u!1 &108924827
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,12 +773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb131ca11eaf65c46a57f7f506dd36c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUiUse: 0
-  so_Card: {fileID: 11400000, guid: fdd9b76277525c745993b8f4855eb43f, type: 2}
-  effect: {fileID: 0}
-  endTurnAmount: 0
-  endTurnAmountMax: 0
-  stone: {fileID: 0}
 --- !u!1 &281176267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,8 +996,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6021955, y: -0.000000006868345, z: 0.000000005180802, w: 0.79834867}
-  m_LocalPosition: {x: 9.78, y: 35.775, z: 22.46}
+  m_LocalRotation: {x: 0.62572753, y: -0.000000046494115, z: 0.00000003729627, w: 0.78004175}
+  m_LocalPosition: {x: 9.49, y: 45.775, z: 22.899998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1051,12 +1045,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!114 &330585548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11466,6 +11460,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2456878703675887362, guid: 628778d0016e47141b9bdc7765ffbb62, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 584500686
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -11672,15 +11670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf8d7f9fae8d364483143a12aa2e368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUiUse: 0
-  so_Card: {fileID: 11400000, guid: 6b92d6521ebb0fc4b961b7ed9ff3d182, type: 2}
-  effect: {fileID: 0}
-  endTurnAmount: 0
-  endTurnAmountMax: 0
-  stone: {fileID: 0}
-  whatIsStone:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &721100821
 GameObject:
   m_ObjectHideFlags: 0
@@ -12018,13 +12007,14 @@ MonoBehaviour:
   player: {fileID: 0}
   playerOff: {fileID: 0}
   pool: {fileID: 974659289}
-  skillManager: {fileID: 0}
   LifeUI: {fileID: 0}
   playerHand: {fileID: 1290980587}
-  CardSelectPanel: {fileID: 0}
   relayMana: {fileID: 0}
   win: {fileID: 0}
   lose: {fileID: 0}
+  dieSo: {fileID: 0}
+  AtSo: {fileID: 0}
+  gravity: 9.8
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -22360,6 +22350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 974659288}
+  - component: {fileID: 974659290}
   - component: {fileID: 974659289}
   m_Layer: 0
   m_Name: Pool
@@ -22395,6 +22386,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c139eebab74197e48a10a2ea8f368cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &974659290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974659287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1181561951
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &980287297
 GameObject:
   m_ObjectHideFlags: 0
@@ -22532,6 +22544,63 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
+--- !u!1 &1007729174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1007729176}
+  - component: {fileID: 1007729175}
+  m_Layer: 0
+  m_Name: Txt2Arr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1007729175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007729174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ad676f3c275c64e9e33c869b7f8bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _test: {fileID: 2800000, guid: a25c2615f71ed6046935f85234cba42c, type: 3}
+  _size: 64
+  _tileSize: 2
+  _height: 180
+  _speed: 2
+  tileTypeSO:
+  - {fileID: 11400000, guid: 7de5174f071757a4d963596e7f3c1901, type: 2}
+  - {fileID: 11400000, guid: e88cbc25906aa3f4ca9cd8a99269c7e0, type: 2}
+  - {fileID: 11400000, guid: 024276f64cbc01d498076c5e76092f5e, type: 2}
+  - {fileID: 11400000, guid: 349e1c768cddbe94f8d81a9a66073acc, type: 2}
+  - {fileID: 11400000, guid: 05e6b3f44d37c2845a64473477bbab20, type: 2}
+  - {fileID: 11400000, guid: da5fd7599566e644ba5e285026d7c1f7, type: 2}
+  _pref: {fileID: 4752963308925410097, guid: 34b609b2365105641830d843c065d0f1, type: 3}
+--- !u!4 &1007729176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007729174}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.5, y: 0, z: -64.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1062034302
 GameObject:
   m_ObjectHideFlags: 0
@@ -32490,12 +32559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b59ae2a4dfb5b4fb9a46f48e705e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUiUse: 0
-  so_Card: {fileID: 11400000, guid: e5d5ffae010e9a8459f720395787a4a6, type: 2}
-  effect: {fileID: 0}
-  endTurnAmount: 0
-  endTurnAmountMax: 0
-  stone: {fileID: 0}
 --- !u!114 &1119325987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32561,12 +32624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf13041d428c0fc48948ef3b81439a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUiUse: 1
-  so_Card: {fileID: 11400000, guid: 3d84063a07aaf02429d25375d611b912, type: 2}
-  effect: {fileID: 0}
-  endTurnAmount: 0
-  endTurnAmountMax: 0
-  stone: {fileID: 0}
 --- !u!1 &1164198528
 GameObject:
   m_ObjectHideFlags: 0
@@ -32822,7 +32879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 35, z: -10}
+  m_FollowOffset: {x: 0, y: 45, z: -10}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -43198,7 +43255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1556083314
 AudioSource:
   m_ObjectHideFlags: 0
@@ -53548,8 +53605,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817903815}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6021955, y: -0.000000006868345, z: 0.000000005180802, w: 0.79834867}
-  m_LocalPosition: {x: 39.17332, y: 38.662884, z: -36.895485}
+  m_LocalRotation: {x: 0.6257275, y: -0.00000004649412, z: 0.00000003729627, w: 0.7800418}
+  m_LocalPosition: {x: 38.88332, y: 48.662884, z: -36.455486}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -63573,12 +63630,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!4 &1891000455
 Transform:
   m_ObjectHideFlags: 0
@@ -68562,7 +68619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1953379215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68876,6 +68933,7 @@ MonoBehaviour:
   StonePrefs: []
   extraLife: 3
   lineRenderer: {fileID: 2074936019}
+  actioncount: 0
 --- !u!1 &1983296932
 GameObject:
   m_ObjectHideFlags: 0
@@ -79150,6 +79208,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1953379218}
+  - {fileID: 1007729176}
   - {fileID: 1751566148}
   - {fileID: 880227410}
   - {fileID: 1614906343}

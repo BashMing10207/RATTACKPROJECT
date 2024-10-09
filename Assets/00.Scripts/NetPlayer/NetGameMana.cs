@@ -11,13 +11,10 @@ public class NetGameMana: MonoBehaviour
     public NetPlayerMana player;
     public Player playerOff;
     public NetPool pool;
-    public SkillManager skillManager;
     
     public LifeUI LifeUI;
     
     public GameObject playerHand;
-    public CardSelectPanel CardSelectPanel;
-    
     public TestLobby relayMana;
 
     public GameObject win, lose;

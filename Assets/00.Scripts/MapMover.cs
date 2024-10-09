@@ -58,7 +58,7 @@ public class MapMover : MonoBehaviour
         {
             for (int j = 0; j < _size; j++)
             {
-                tiles[i,j] = Instantiate(_pref,transform.position +  new Vector3(i * _tileSize,((float)(bArray[(_size) * i + j]).r)/_height , j * _tileSize), Quaternion.identity)
+                tiles[i,j] = Instantiate(_pref,transform.position +  new Vector3(i * _tileSize,((float)(bArray[(_size) * i + j]).r)/_height , j * _tileSize), Quaternion.identity,transform)
                     .GetComponent<Tile>();
                 targetPoses[i, j] = transform.position + new Vector3(i * _tileSize, ((float)(bArray[(_size) * i + j]).r) / _height, j * _tileSize);
             }
