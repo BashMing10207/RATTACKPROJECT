@@ -12,7 +12,6 @@ public class NetGameMana: MonoBehaviour
     public Player playerOff;
     public NetPool pool;
     
-    public LifeUI LifeUI;
     
     public GameObject playerHand;
     public TestLobby relayMana;
