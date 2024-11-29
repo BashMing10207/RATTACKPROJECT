@@ -834,7 +834,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_sharedMaterial: {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -11731,7 +11732,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_sharedMaterial: {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -12007,7 +12009,6 @@ MonoBehaviour:
   player: {fileID: 0}
   playerOff: {fileID: 0}
   pool: {fileID: 974659289}
-  LifeUI: {fileID: 0}
   playerHand: {fileID: 1290980587}
   relayMana: {fileID: 0}
   win: {fileID: 0}
@@ -22193,7 +22194,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_sharedMaterial: {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -32766,7 +32768,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_sharedMaterial: {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -68756,7 +68759,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_sharedMaterial: {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: -4134345027831314768, guid: 17a3caad36bb221478279b5aed9ab3c5, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:

@@ -106,7 +106,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0.6
-    - _Ming: 4
+    - _Ming: 15
     - _Normal: 0.7
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -121,7 +121,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Tile1: 15
+    - _Tile1: 5
     - _Tile1_1: 25
     - _WorkflowMode: 1
     - _ZWrite: 1
