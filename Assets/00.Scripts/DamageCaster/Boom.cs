@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class Boom : Bullet
+public class Boom : MonoBehaviour
 {
     [SerializeField]
     LayerMask _layerMask;
@@ -22,7 +22,7 @@ public class Boom : Bullet
                 if (colliders[i] != null)
                 if (colliders[i].CompareTag("Hitable"))
                 {
-                    AttackTop(colliders[i].transform).GetDamage(new AttackStrc((colliders[i].transform.position-transform.position).normalized*3+Vector3.up,damage,power,null));
+
                 }
             }
 
