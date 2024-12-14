@@ -1,33 +1,39 @@
 using System;
 using UnityEngine;
 
-namespace MING.Agent
-{
-    public class AgentMovment : MonoBehaviour
+
+    public class AgentMovment : MonoBehaviour,IGetCompoable
     {
-        public event Action<Vector2> OnMovement;
+        public Action<Vector2> OnMovement;
         private Rigidbody _rbCompo;
 
         private float _moveSpeed = 3f;
         private Vector2 _movement;
         private Agent _agent;
 
-        public void Initialize(Agent entity)
+        private float _speedMultiplier;
+
+        public void SetSpeedMultiplier(float value) => _speedMultiplier = value;
+
+        public void Initialize(GetCompoParent entity)
         {
-            _agent = entity;
+            _agent = (Agent)entity;
             _rbCompo = entity.GetComponent<Rigidbody>();
         }
 
-        public void OnMove(Vector3 direction, float maxSpeed)
+        //public void OnMove(Vector3 direction, float maxSpeed)
+        //{
+        //    OnMovement?.Invoke(_rbCompo.linearVelocity);
+        //    _rbCompo.AddForce(direction * Mathf.Lerp(1, 0, (Vector3.Project(direction, _rbCompo.linearVelocity) + _rbCompo.linearVelocity).magnitude / maxSpeed),ForceMode.Impulse);
+        //}
+
+        public void Move(Vector3 dir)
         {
-            OnMovement?.Invoke(_rbCompo.linearVelocity);
-            _rbCompo.AddForce(direction * Mathf.Lerp(1, 0, (Vector3.Project(direction, _rbCompo.linearVelocity) + _rbCompo.linearVelocity).magnitude / maxSpeed),ForceMode.Impulse);
+           _rbCompo.AddForce(dir,ForceMode.Impulse);
         }
 
-        public void SetMovement(float movment)
+        private void OnDestroy()
         {
-           
+             
         }
     }
-}
-

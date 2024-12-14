@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace MING
-{
     public abstract class GetCompoParent : MonoBehaviour
     {
         protected Dictionary<Type, IGetCompoable> _components;
@@ -51,4 +49,4 @@ namespace MING
 
     }
 
-}
+

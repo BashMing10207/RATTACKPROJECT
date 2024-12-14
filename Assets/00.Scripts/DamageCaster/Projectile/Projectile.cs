@@ -1,47 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Projectile : MonoBehaviour
+public class Projectile : SummonedObject
 {
     RaycastHit _hit;
     
-    public Vector3 forawrdDir,startPos;
-    public float speedMulti = 1;
+    protected float _speedMulti = 1, _sizeModify=1,_sizeModifyMulti=1;
     [SerializeField]
-    float _maxTime = 40;
+    private float _maxTime = 40;
     [SerializeField]
-    LayerMask targetLayer;
+    private LayerMask _targetLayer;
     [SerializeField]
-    ProjectileSO _soData;
+    private ProjectileSO _soData;
 
-    float _time = 0;
-    private void Start()
-    {
-        forawrdDir = transform.forward;
-        startPos = transform.position;
-    }
+    public UnityEvent<IGetDamageable> OnAttackEvent;
+    public UnityEvent OnDeadEvent;
 
-    public void Init(Vector3 forwardDirection,Vector3 startPoss,float speedMultif)
+    private float _time = 0;
+
+    public override void Init(Vector3 startPos, Vector3 forwardDirection, float speedMultif)
     {
         transform.forward = forwardDirection;
-        transform.position = startPoss;
+        transform.position = startPos;
         _time = 0;
-        speedMulti = speedMultif;
+        _speedMulti = speedMultif;
     }
 
     public virtual void Update()
     {
-        if (Physics.SphereCast(transform.position,_soData.radius,transform.forward,out _hit,_soData.speed*Time.deltaTime*speedMulti,targetLayer))
+        if (Physics.SphereCast(transform.position,_soData.radius,transform.forward,out _hit,_soData.speed*Time.deltaTime*_speedMulti,_targetLayer))
         {
-            if (_hit.transform.CompareTag("Hitable"))
+            if (_hit.transform.TryGetComponent<IGetDamageable>(out IGetDamageable targetCompo))
             {
-               
+               OnAttackEvent?.Invoke(targetCompo);
             }
             Die();
         }
 
-        transform.position = transform.position+transform.forward*_soData.speed*Time.deltaTime*speedMulti;
+        transform.position = transform.position + transform.forward*_soData.speed*Time.deltaTime*_speedMulti;
         _time += Time.deltaTime;
 
         if(_time > _maxTime)
@@ -52,7 +48,6 @@ public class Projectile : MonoBehaviour
 
     public virtual void Die()
     {
-        Instantiate(_soData.dieEffect, transform.position, transform.rotation);
-        
+        OnDeadEvent?.Invoke();
     }
 }
