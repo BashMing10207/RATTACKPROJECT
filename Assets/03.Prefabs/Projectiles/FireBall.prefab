@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5826238579886668455}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.35, y: -0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4852,6 +4852,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9087815225818819219}
   - component: {fileID: 4180240583934797918}
+  - component: {fileID: 8281790888987351530}
+  - component: {fileID: 7234091636312835012}
+  - component: {fileID: 84480199273817377}
+  - component: {fileID: 8812711434479846286}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -4887,18 +4891,126 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d0300546f24154bb5cfdfca708447b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForawrdDir: {x: 0, y: 0, z: 0}
-  StartPos: {x: 0, y: 0, z: 0}
-  _maxTime: 40
-  targetLayer:
+  _maxTime: 15
+  _targetLayer:
     serializedVersion: 2
-    m_Bits: 27
+    m_Bits: 187
   _soData: {fileID: 11400000, guid: 27013773e18189b4eb6b3be30a78d63c, type: 2}
   OnAttackEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 84480199273817377}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnKnockbackEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7234091636312835012}
+        m_TargetAssemblyTypeName: Knockbacker, Assembly-CSharp
+        m_MethodName: KnockbackCast
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDeadEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8281790888987351530}
+        m_TargetAssemblyTypeName: DieAndEffect, Assembly-CSharp
+        m_MethodName: OnDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4180240583934797918}
+        m_TargetAssemblyTypeName: Projectile, Assembly-CSharp
+        m_MethodName: BeDisable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _rotateDir: {x: 1, y: 0, z: 0}
-  _downSpeed: 30
+  _downSpeed: 1
+--- !u!114 &8281790888987351530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706144353491236736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66cb84de80b5c843883052d0ebe0aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deadEffect: {fileID: 0}
+  _delayTime: 2
+--- !u!114 &7234091636312835012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706144353491236736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50158e8fa82610b478e9c5ae1dabf68a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &84480199273817377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706144353491236736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5f1b04d3c53c14db8f595bca0ffa09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &8812711434479846286
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706144353491236736}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

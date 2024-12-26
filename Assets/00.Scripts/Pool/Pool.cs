@@ -28,7 +28,7 @@ public class Pool : MonoBehaviour
         {
 
             //gameObject = Instantiate(prjtype.gameObj, transform.position, transform.rotation, transform);
-            gameObject = Instantiate(prjtype.gameObj, transform.position, transform.rotation, transform);
+            gameObject = Instantiate(prjtype.GameObj, transform.position, transform.rotation, transform);
             
         }
         else
@@ -48,7 +48,7 @@ public class Pool : MonoBehaviour
 
         if (!poolMing[prjtype].TryPeek(out gameObject))
         {
-            gameObject = Instantiate(prjtype.gameObj, transform.position, transform.rotation, transform);
+            gameObject = Instantiate(prjtype.GameObj, transform.position, transform.rotation, transform);
         }
         else
         {

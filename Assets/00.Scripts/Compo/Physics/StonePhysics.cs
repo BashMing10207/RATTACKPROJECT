@@ -17,4 +17,5 @@ public class StonePhysics : MonoBehaviour, IGetCompoable
     {
         _rigidCompo.AddForceAtPosition(dir, hitpoint, ForceMode.Impulse);
     }
+
 }

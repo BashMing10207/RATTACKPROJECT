@@ -20,7 +20,8 @@ public class OverlapDamageCaster : DamageCaster,IAttackable
         {
             for (int i = 0; i < colliders.Length; i++)
             {
-                
+                if (colliders[i] == null)
+                    break;
                 DamageCast(colliders[i].gameObject, _damage);
             }
 

@@ -5,7 +5,7 @@ public class GameManager : Manager<GameManager>
 {
     public Action OnTurnEnd;
 
-    private bool _isPlayerturn;
+    private bool _isPlayerturn =true;
     public bool IsPlayerturn => _isPlayerturn;
 
     public PlayerManager PlayerManagerCompo;

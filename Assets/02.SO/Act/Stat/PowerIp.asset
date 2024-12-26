@@ -16,6 +16,9 @@ MonoBehaviour:
   MaxCost: 10
   ActName: PowerUp
   Description: 
+  Icon: {fileID: 21300000, guid: 5f93aa9de402d064cbbda195cb31f448, type: 3}
+  AnimParamName: None
+  HashValue: -542986255
   _getImpactStat2This: {fileID: 11400000, guid: 655e5ea7d2136ce41ad6a35045f1757a, type: 2}
   _moidfier: {fileID: 11400000, guid: 2106df76084d3ed42b45f51ac65cfaa8, type: 2}
   _keepingTurn: 10

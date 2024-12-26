@@ -4,6 +4,8 @@ public class DieAndEffect : MonoBehaviour
 {
     [SerializeField]
     private GameObject _deadEffect;
+    [SerializeField]
+    private float _delayTime = 0;
     public virtual void OnDead()
     {
         OnDead(transform,transform.forward, 1);
@@ -16,6 +18,6 @@ public class DieAndEffect : MonoBehaviour
             Transform instance = Instantiate(_deadEffect, targetTrm.position, Quaternion.LookRotation(direction)).transform;
             instance.localScale *= scale;
         }
-        Destroy(gameObject);
+        Destroy(gameObject,_delayTime);
     }
 }

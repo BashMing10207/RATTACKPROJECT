@@ -7,7 +7,7 @@ public class OverlabKnockback : Knockbacker
     private LayerMask _whatisTarget;
     [SerializeField]
     private float _size = 5f, _damage = 1, _power = 1000;
-    private Collider[] colliders = new Collider[35];
+    private Collider[] colliders = new Collider[25];
 
     private void OnEnable()
     {
@@ -19,8 +19,10 @@ public class OverlabKnockback : Knockbacker
         {
             for (int i = 0; i < colliders.Length; i++)
             {
-                Vector3 attackdir = (transform.position - colliders[i].transform.position).normalized * _power;
-                KnockbackCast(gameObject, attackdir);
+                if (colliders[i]==null)
+                    break;
+                Vector3 attackdir = (colliders[i].transform.position- transform.position).normalized * _power;
+                KnockbackCast(colliders[i].gameObject, attackdir);
             }
 
         }

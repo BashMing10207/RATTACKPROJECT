@@ -55,10 +55,46 @@ public partial class @Input2: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""MouseButton2"",
+                    ""type"": ""Button"",
+                    ""id"": ""0bfdbe99-5138-40c1-a5d4-04ee8834da2d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Swap"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""fa3f1420-ac03-49de-b4ce-432606a1c133"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Scrol"",
+                    ""type"": ""Value"",
+                    ""id"": ""f0029e3a-08a8-496d-9adc-a573344d121a"",
                     ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MouseDelta"",
+                    ""type"": ""Value"",
+                    ""id"": ""a3deac75-8675-439b-833c-54970600652a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Arrow"",
+                    ""type"": ""Value"",
+                    ""id"": ""1f6e0ec8-508f-4d54-bb3e-d53bdc866ff3"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -99,70 +135,103 @@ public partial class @Input2: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Scroll"",
-                    ""id"": ""59f49d05-b649-4039-b7f0-545d494b5792"",
-                    ""path"": ""1DAxis"",
+                    ""name"": """",
+                    ""id"": ""aae260aa-4a71-4d8d-888c-4c1c27fa77e3"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap"",
+                    ""action"": ""MouseButton2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""169c7ef1-31b4-4de5-8bc5-21f0798bf167"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scrol"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62aaf838-5190-4ccc-aaa3-8fdc9aa98c8b"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""b4dc2c8d-3984-4933-a6ae-9f9c859e153d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Arrow"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""1e2d1716-e9a5-472f-92f2-acc7296954ab"",
-                    ""path"": ""<Mouse>/scroll/down"",
+                    ""name"": ""up"",
+                    ""id"": ""6aee0694-385e-46f4-9e0c-45dbfa5b57e4"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap"",
+                    ""action"": ""Arrow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""9dc7ecb6-9a49-4889-91ad-6aa5ed64366b"",
-                    ""path"": ""<Mouse>/scroll/up"",
+                    ""name"": ""down"",
+                    ""id"": ""c14c99b3-f579-46a8-b4ba-3263b8cc89be"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap"",
+                    ""action"": ""Arrow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Arrow"",
-                    ""id"": ""0509b688-163c-4824-a6f8-45c806259bb0"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Swap"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""34c1cac5-f167-4fb5-b236-ee38e0cf90be"",
+                    ""name"": ""left"",
+                    ""id"": ""3108f402-10ff-422c-bdab-524bdddaedc4"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Swap"",
+                    ""action"": ""Arrow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""d0119612-8344-49f1-a8ea-4b9221f087f9"",
+                    ""name"": ""right"",
+                    ""id"": ""673d0a35-2d14-4f35-8475-e73cc4a02b53"",
                     ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Arrow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4830e18b-e86f-477a-aae9-4d19e27c9bae"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Swap"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -730,7 +799,11 @@ public partial class @Input2: IInputActionCollection2, IDisposable
         m_Player_Change = m_Player.FindAction("Change", throwIfNotFound: true);
         m_Player_MousePos = m_Player.FindAction("MousePos", throwIfNotFound: true);
         m_Player_MouseButton = m_Player.FindAction("MouseButton", throwIfNotFound: true);
+        m_Player_MouseButton2 = m_Player.FindAction("MouseButton2", throwIfNotFound: true);
         m_Player_Swap = m_Player.FindAction("Swap", throwIfNotFound: true);
+        m_Player_Scrol = m_Player.FindAction("Scrol", throwIfNotFound: true);
+        m_Player_MouseDelta = m_Player.FindAction("MouseDelta", throwIfNotFound: true);
+        m_Player_Arrow = m_Player.FindAction("Arrow", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -815,7 +888,11 @@ public partial class @Input2: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Change;
     private readonly InputAction m_Player_MousePos;
     private readonly InputAction m_Player_MouseButton;
+    private readonly InputAction m_Player_MouseButton2;
     private readonly InputAction m_Player_Swap;
+    private readonly InputAction m_Player_Scrol;
+    private readonly InputAction m_Player_MouseDelta;
+    private readonly InputAction m_Player_Arrow;
     public struct PlayerActions
     {
         private @Input2 m_Wrapper;
@@ -823,7 +900,11 @@ public partial class @Input2: IInputActionCollection2, IDisposable
         public InputAction @Change => m_Wrapper.m_Player_Change;
         public InputAction @MousePos => m_Wrapper.m_Player_MousePos;
         public InputAction @MouseButton => m_Wrapper.m_Player_MouseButton;
+        public InputAction @MouseButton2 => m_Wrapper.m_Player_MouseButton2;
         public InputAction @Swap => m_Wrapper.m_Player_Swap;
+        public InputAction @Scrol => m_Wrapper.m_Player_Scrol;
+        public InputAction @MouseDelta => m_Wrapper.m_Player_MouseDelta;
+        public InputAction @Arrow => m_Wrapper.m_Player_Arrow;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -842,9 +923,21 @@ public partial class @Input2: IInputActionCollection2, IDisposable
             @MouseButton.started += instance.OnMouseButton;
             @MouseButton.performed += instance.OnMouseButton;
             @MouseButton.canceled += instance.OnMouseButton;
+            @MouseButton2.started += instance.OnMouseButton2;
+            @MouseButton2.performed += instance.OnMouseButton2;
+            @MouseButton2.canceled += instance.OnMouseButton2;
             @Swap.started += instance.OnSwap;
             @Swap.performed += instance.OnSwap;
             @Swap.canceled += instance.OnSwap;
+            @Scrol.started += instance.OnScrol;
+            @Scrol.performed += instance.OnScrol;
+            @Scrol.canceled += instance.OnScrol;
+            @MouseDelta.started += instance.OnMouseDelta;
+            @MouseDelta.performed += instance.OnMouseDelta;
+            @MouseDelta.canceled += instance.OnMouseDelta;
+            @Arrow.started += instance.OnArrow;
+            @Arrow.performed += instance.OnArrow;
+            @Arrow.canceled += instance.OnArrow;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -858,9 +951,21 @@ public partial class @Input2: IInputActionCollection2, IDisposable
             @MouseButton.started -= instance.OnMouseButton;
             @MouseButton.performed -= instance.OnMouseButton;
             @MouseButton.canceled -= instance.OnMouseButton;
+            @MouseButton2.started -= instance.OnMouseButton2;
+            @MouseButton2.performed -= instance.OnMouseButton2;
+            @MouseButton2.canceled -= instance.OnMouseButton2;
             @Swap.started -= instance.OnSwap;
             @Swap.performed -= instance.OnSwap;
             @Swap.canceled -= instance.OnSwap;
+            @Scrol.started -= instance.OnScrol;
+            @Scrol.performed -= instance.OnScrol;
+            @Scrol.canceled -= instance.OnScrol;
+            @MouseDelta.started -= instance.OnMouseDelta;
+            @MouseDelta.performed -= instance.OnMouseDelta;
+            @MouseDelta.canceled -= instance.OnMouseDelta;
+            @Arrow.started -= instance.OnArrow;
+            @Arrow.performed -= instance.OnArrow;
+            @Arrow.canceled -= instance.OnArrow;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1017,7 +1122,11 @@ public partial class @Input2: IInputActionCollection2, IDisposable
         void OnChange(InputAction.CallbackContext context);
         void OnMousePos(InputAction.CallbackContext context);
         void OnMouseButton(InputAction.CallbackContext context);
+        void OnMouseButton2(InputAction.CallbackContext context);
         void OnSwap(InputAction.CallbackContext context);
+        void OnScrol(InputAction.CallbackContext context);
+        void OnMouseDelta(InputAction.CallbackContext context);
+        void OnArrow(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

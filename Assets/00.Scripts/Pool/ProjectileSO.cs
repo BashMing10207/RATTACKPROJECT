@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ming/Projectile")]
 public class ProjectileSO : ScriptableObject
 {
-    public float speed, damage,power,radius,down;
-    public GameObject gameObj,dieEffect;
+    public float Speed, Damage,Power,Radius,Down,SpeedModifyMulti=0.1f;
+    public GameObject GameObj,DieEffect;
     
 }

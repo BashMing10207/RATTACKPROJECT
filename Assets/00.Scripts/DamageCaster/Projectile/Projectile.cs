@@ -13,10 +13,13 @@ public class Projectile : SummonedObject
     [SerializeField]
     private ProjectileSO _soData;
 
-    public UnityEvent<IGetDamageable> OnAttackEvent;
+    public UnityEvent<GameObject,float> OnAttackEvent;
+    public UnityEvent<GameObject,Vector3> OnKnockbackEvent;
     public UnityEvent OnDeadEvent;
 
     private float _time = 0;
+
+    protected float _currentSpeed => _soData.Speed + _speedMulti;
 
     public override void Init(Vector3 startPos, Vector3 forwardDirection, float speedMultif)
     {
@@ -28,16 +31,14 @@ public class Projectile : SummonedObject
 
     public virtual void Update()
     {
-        if (Physics.SphereCast(transform.position,_soData.radius,transform.forward,out _hit,_soData.speed*Time.deltaTime*_speedMulti,_targetLayer))
+        if (Physics.SphereCast(transform.position,_soData.Radius,transform.forward,out _hit,_soData.Speed*Time.deltaTime*_speedMulti,_targetLayer))
         {
-            if (_hit.transform.TryGetComponent<IGetDamageable>(out IGetDamageable targetCompo))
-            {
-               OnAttackEvent?.Invoke(targetCompo);
-            }
-            Die();
+               OnAttackEvent?.Invoke(_hit.transform.gameObject,_soData.Damage);
+               OnKnockbackEvent?.Invoke(_hit.transform.gameObject, transform.forward * _soData.Power * _soData.Speed*_speedMulti);
+                Die();
         }
 
-        transform.position = transform.position + transform.forward*_soData.speed*Time.deltaTime*_speedMulti;
+        transform.position = transform.position + transform.forward*_soData.Speed*Time.deltaTime*_speedMulti;
         _time += Time.deltaTime;
 
         if(_time > _maxTime)
@@ -49,5 +50,10 @@ public class Projectile : SummonedObject
     public virtual void Die()
     {
         OnDeadEvent?.Invoke();
+    }
+
+    public void BeDisable()
+    {
+        this.enabled = false;
     }
 }

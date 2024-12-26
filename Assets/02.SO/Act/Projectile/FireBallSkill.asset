@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c613bce051283b045a1f52a750468923, type: 3}
   m_Name: FireBallSkill
   m_EditorClassIdentifier: 
-  SkillType: 0
   MinCost: 1
   MaxCost: 10
-  Description: 
+  ActName: FireBall
+  Description: "\uD654\uC5FC\uAD6C\uB97C \uD22C\uCC99"
+  Icon: {fileID: 21300000, guid: e81e43c7e62f06c43b7c1027ff63fd85, type: 3}
+  AnimParamName: MagicStaff
+  HashValue: -868513942
   Perfab: {fileID: 4180240583934797918, guid: aa0f1bf1268e2494aa6c782338864a8e, type: 3}

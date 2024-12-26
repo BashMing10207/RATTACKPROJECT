@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public abstract class DamageCaster : MonoBehaviour
+public class DamageCaster : MonoBehaviour
 {
-    protected virtual void DamageCast(GameObject target, float damage)
+    public virtual void DamageCast(GameObject target, float damage)
     {
         if (target.TryGetComponent<IGetDamageable>(out IGetDamageable healthcompo))
         {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //R:Height
-//G:
+//G:rotate
 //B:--¤¡
 //  0~ :dirt
 //  50~:grass
@@ -81,14 +81,15 @@ public class MapGenerator : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            ChangeMap(_test);
-            mapIdx = ++mapIdx % mapImgs.Length;
+            //ChangeMap(_test);
+            ming();
         }
     }
     [ContextMenu("asdfdfsa")]
     public void ming()
     {
-        //ChangeMap(mapImgs[mapIdx]);
+        mapIdx = ++mapIdx % mapImgs.Length;
+        ChangeMap(mapImgs[mapIdx]);
     }
     public void ChangeMap(Texture2D targetmap)
     {

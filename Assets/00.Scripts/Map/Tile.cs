@@ -4,18 +4,39 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public TileType TileType;
+    [SerializeField]
+    private TileType _tileType;
+    [SerializeField]
+    private MeshRenderer _meshRenderer;
+    [SerializeField]
+    private MeshFilter _meshfilter;
 
-    public MeshRenderer meshRenderer;
-    public MeshFilter meshfilter;
+    [SerializeField]
+    private Collider _collider;
+
+    
     private void Awake()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        _meshRenderer = GetComponent<MeshRenderer>();
     }
     public void ChangeTile(TileType type)
     {
-        meshfilter.mesh = MapGenerator.Instance.tileTypeSO[(int)type].mesh;
-        meshRenderer.material = MapGenerator.Instance.tileTypeSO[(int)type].material;
+        _meshfilter.mesh = MapGenerator.Instance.tileTypeSO[(int)type].mesh;
+        _meshRenderer.material = MapGenerator.Instance.tileTypeSO[(int)type].material;
         //print(type.ToString());
+    }
+
+    public void DownTile(float value)
+    {
+        StartCoroutine(DownCorutin(value));
+    }
+
+    private IEnumerator DownCorutin(float value)
+    {
+        for (float i = 0; i < value; i+=0.02f)
+        {
+            transform.position -= new Vector3(0,0.02f,0);
+            yield return new WaitForSeconds(0.02f);
+        }
     }
 }

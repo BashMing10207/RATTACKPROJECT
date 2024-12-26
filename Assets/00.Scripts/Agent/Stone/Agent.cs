@@ -8,6 +8,7 @@ using UnityEngine;
         public Health HealthCompo;
         public SkillManager SkillManagerCompo;
         public StatManager StatManagerCompo;
+        
 
     }
 

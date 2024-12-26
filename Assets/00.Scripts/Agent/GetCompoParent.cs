@@ -9,21 +9,24 @@ using UnityEngine;
         protected virtual void Awake()
         {
             _components = new Dictionary<Type, IGetCompoable>();
-            AddComponentToDictionary();
-            ComponentInitialize();
+            AddComponentToDictionary(ComponentInitialize());
+            
             AfterInitialize();
         }
 
-        private void AddComponentToDictionary()
+        private void AddComponentToDictionary(List<IGetCompoable> list)
         {
-            GetComponentsInChildren<IGetCompoable>(true)
-                .ToList().ForEach(component => _components.Add(component.GetType(), component));
+            list.ForEach(component => _components.TryAdd(component.GetType(), component));
         }
 
-        private void ComponentInitialize()
+        private List<IGetCompoable> ComponentInitialize()
         {
-            _components.Values.ToList().ForEach(component => component.Initialize(this));
-        }
+        List<IGetCompoable> list = GetComponentsInChildren<IGetCompoable>(true)
+            .ToList();
+        list.ForEach(component => component.Initialize(this));
+        return list;
+        //_components.Values.ToList().ForEach(component => component.Initialize(this));
+    }
 
         protected virtual void AfterInitialize()
         {
