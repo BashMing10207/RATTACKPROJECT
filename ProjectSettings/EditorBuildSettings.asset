@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/05.Scenes/BshNet2.unity
-    guid: 7f2e7209e9762734880b8feff679308e
+    path: Assets/05.Scenes/GameScene 1.unity
+    guid: 635d1edaef3943b4dbb5e55d5c0b4965
   - enabled: 1
-    path: Assets/05.Scenes/Title.unity
-    guid: e883ac0133490e648a773b8377e1aecc
+    path: Assets/05.Scenes/ConnectScene.unity
+    guid: 5c91847f0f6eafc44aca9abb63c4213f
   - enabled: 1
-    path: Assets/05.Scenes/00.NEwBashScene.unity
+    path: Assets/05.Scenes/GameScene.unity
     guid: 233fc1a83aa7b2e42bbd5d787d6fb23a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a4e611cccaa1e2847b26c4f1a1b33a0c, type: 2}

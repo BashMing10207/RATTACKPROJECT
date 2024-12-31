@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum ActType
@@ -7,6 +8,7 @@ public enum ActType
         Active
     }
 //[CreateAssetMenu(fileName="SO/Act")]
+[Serializable]
 public abstract class ActSO : ScriptableObject
 {
     

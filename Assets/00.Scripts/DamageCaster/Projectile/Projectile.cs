@@ -7,17 +7,17 @@ public class Projectile : SummonedObject
     
     protected float _speedMulti = 1, _sizeModify=1,_sizeModifyMulti=1;
     [SerializeField]
-    private float _maxTime = 40;
+    protected float _maxTime = 40;
     [SerializeField]
-    private LayerMask _targetLayer;
+   protected LayerMask _targetLayer;
     [SerializeField]
-    private ProjectileSO _soData;
+    protected ProjectileSO _soData;
 
     public UnityEvent<GameObject,float> OnAttackEvent;
     public UnityEvent<GameObject,Vector3> OnKnockbackEvent;
     public UnityEvent OnDeadEvent;
 
-    private float _time = 0;
+    protected float _time = 0;
 
     protected float _currentSpeed => _soData.Speed + _speedMulti;
 

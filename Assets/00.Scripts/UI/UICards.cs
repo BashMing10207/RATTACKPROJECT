@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IGetCompoable,IPointerClickHandler,IPointerDownHandler
+public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IGetCompoable,IPointerClickHandler,IPointerDownHandler,IAfterInitable
 {
     [SerializeField]
     private Outline _outLineRenderer;
@@ -20,10 +20,14 @@ public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IG
     public UnityEvent OnClicked;
 
     private RectTransform _rectTrm;
-    private PlayerManager _parent;
+    private Player _parent;
     private int _index = 0, _type =0;
 
-    private void Awake()
+    private PlayerAgentManager _manager;
+    private ActCommander _commander;
+
+
+    private void OnEnable()
     {
         _rectTrm = GetComponent<RectTransform>();
         OnClicked.AddListener(SetAction);
@@ -37,6 +41,11 @@ public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IG
         _type = type;
     }
 
+    private void Update()
+    {
+        //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Vector3.Lerp(transform.parent.forward, (transform.parent.forward + (Vector3)_parent.PlayerInput.MousePos - Camera.main.WorldToScreenPoint(transform.position)).normalized, 0.1f),transform.parent.up),Time.deltaTime*10);
+    }
+
     public void SetActive(bool active)
     {
         gameObject.SetActive(active);
@@ -44,7 +53,14 @@ public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IG
 
     public void Initialize(GetCompoParent entity)
     {
-        _parent = entity as PlayerManager;
+        _parent = entity as Player;
+
+    }
+
+    public void AfterInit()
+    {
+        _manager = _parent.GetCompo<PlayerAgentManager>();
+        _commander = _parent.GetCompo<ActCommander>();
     }
     public void OutLineHandle(bool enabled)
     {
@@ -74,13 +90,15 @@ public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IG
 
     public void SetAction()
     {
-        _parent.SetAct(Act);
+        _commander.SetAct(Act);
         _parent.GetCompo<PlayerActions>().SetAction(_type,_index);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _parent.IsHolding = false;
+        _manager.IsHolding = false;
         OnClicked?.Invoke();
     }
+
+
 }

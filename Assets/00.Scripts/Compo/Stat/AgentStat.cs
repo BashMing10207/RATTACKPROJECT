@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentStat : MonoBehaviour,IGetCompoable,IAfterInitable
+public class AgentStat : MonoBehaviour,IGetCompoable
 {
     [SerializeField]
     private List<StatSO> _stats = new List<StatSO>();
@@ -12,7 +12,7 @@ public class AgentStat : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         _agent = entity as Agent;
     }
-    public void AfterInit()
+    public void Start   ()
     {
         GameManager.Instance.OnTurnEnd += RemoveTempStat;
     }

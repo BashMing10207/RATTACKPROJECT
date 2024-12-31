@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxCost: 10
   ActName: FireBall
   Description: "\uD654\uC5FC\uAD6C\uB97C \uD22C\uCC99"
-  Icon: {fileID: 21300000, guid: e81e43c7e62f06c43b7c1027ff63fd85, type: 3}
+  Icon: {fileID: 21300000, guid: 053825aeacff2a94bae0ec84c6c44523, type: 3}
   AnimParamName: MagicStaff
   HashValue: -868513942
   Perfab: {fileID: 4180240583934797918, guid: aa0f1bf1268e2494aa6c782338864a8e, type: 3}

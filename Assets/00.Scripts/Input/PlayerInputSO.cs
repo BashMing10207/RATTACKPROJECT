@@ -25,8 +25,17 @@ public class PlayerInputSO : ScriptableObject, Input2.IPlayerActions, Input2.IUI
     private Input2 _controls;
     public Vector2 MouseDelta { get; private set; }
 
-
     private void OnEnable()
+    {
+       ActiveInput();
+    }
+
+    private void OnDisable()
+    {
+        DisableInput();
+    }
+
+    public void ActiveInput()
     {
         if (_controls == null)
         {
@@ -37,13 +46,16 @@ public class PlayerInputSO : ScriptableObject, Input2.IPlayerActions, Input2.IUI
         _controls.Player.Enable();
         _controls.UI.Enable();
     }
+    public void DisActivePlayerInput()
+    {
+        _controls.Player.Disable();
+    }
 
-    private void OnDisable()
+    public void DisableInput()
     {
         _controls.Player.Disable();
         _controls.UI.Disable();
     }
-
 
     public void SetPlayerInput(bool isEnable)
     {

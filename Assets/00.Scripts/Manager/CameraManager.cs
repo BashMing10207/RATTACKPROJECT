@@ -6,7 +6,7 @@ public class CameraManager : MonoBehaviour,IGetCompoable,IAfterInitable
     public Camera MainCamera1;
     public CinemachineVirtualCamera VirtualCamera;
 
-    private PlayerManager _entity;
+    private Player _entity;
     private PlayerInputSO _playerInputSO;
     private Vector3 _camposOffset = new Vector3(0, 35, 0.01f);
 
@@ -17,12 +17,12 @@ public class CameraManager : MonoBehaviour,IGetCompoable,IAfterInitable
 
     public void Initialize(GetCompoParent entity)
     {
-        _entity = entity as PlayerManager;
+        _entity = entity as Player;
         _playerInputSO = _entity.PlayerInput;
     }
     public void AfterInit()
     {
-        _entity.OnSwapUnit += ChangeTargetProcess;
+        _entity.GetCompo<PlayerAgentManager>().OnSwapUnit += ChangeTargetProcess;
     }
 
     private void ChangeTargetProcess(Unit unit)

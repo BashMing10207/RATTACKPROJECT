@@ -20,5 +20,5 @@ MonoBehaviour:
   Icon: {fileID: 0}
   AnimParamName: MagicManga
   HashValue: -133174533
-  Perfab: {fileID: 0}
+  Perfab: {fileID: -4820507352091909931, guid: 492e6a3ec602e8d459290b5400d0f079, type: 3}
   AddSizeModifier: 0.1

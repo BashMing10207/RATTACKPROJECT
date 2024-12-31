@@ -1,17 +1,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SkillAnimator : MonoBehaviour,IGetCompoable
+public class SkillAnimator : MonoBehaviour,IGetCompoable,IAfterInitable
 {
     [SerializeField]
     private Animator _anim;
-    private PlayerManager _playerManager;
+    private GetCompoParent _agent;
 
     public void Initialize(GetCompoParent entity)
     {
-        _playerManager = entity as PlayerManager;
-        _playerManager.ActionExcutor += SetAnimPowerValue;
+        _agent = entity;
+        
     }
+
+    public void AfterInit()
+    {
+        _agent.GetCompo<AgentManager>(true).ActionExcutor += SetAnimPowerValue;
+    }
+
     public void SetPos(Transform trm)
     {
         transform.SetPositionAndRotation(trm.position, trm.rotation);
@@ -24,9 +30,16 @@ public class SkillAnimator : MonoBehaviour,IGetCompoable
     {
         _anim.SetTrigger(str);
     }
-    private void SetAnimPowerValue(Vector3 dir, ActSO agent)
+
+    public void AttackAnim()
+    {
+        _anim.SetTrigger("Attack");
+    }
+
+    private void SetAnimPowerValue(Vector3 dir)
     {
         _anim.SetFloat("Value",dir.magnitude);
     }
+
 
 }

@@ -21,7 +21,7 @@ public enum TileType
     Stone,
     Ice,
     Lava,
-    Null
+    Snow
 }
 
 public class MapGenerator : MonoBehaviour

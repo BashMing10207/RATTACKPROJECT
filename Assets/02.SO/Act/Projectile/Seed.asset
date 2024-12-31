@@ -18,6 +18,6 @@ MonoBehaviour:
   Description: "\uB9C8\uBC95\uC73C\uB85C \uC0DD\uC131\uD55C \uB098\uBB34\uC528\uC557\uC744
     \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
   Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  AnimParamName: Staff
-  HashValue: -2085626730
-  Perfab: {fileID: 9050954676171508603, guid: fae2463af08e0484f8ef56df2dbe66c7, type: 3}
+  AnimParamName: MagicStaff
+  HashValue: -868513942
+  Perfab: {fileID: 3470180028030141798, guid: d20f738cba332dd4dafd1652316bcf32, type: 3}
