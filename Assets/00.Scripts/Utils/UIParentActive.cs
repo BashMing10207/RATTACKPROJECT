@@ -6,14 +6,14 @@ public class UIParentActive : MonoBehaviour
 {
     [SerializeField]
     private CanvasGroup _ui;
-    public UnityEvent OnActive;
-    private void Update()
-    {
-        if(Keyboard.current.yKey.wasPressedThisFrame)
-        {
-            UIToggle();
-        }
-    }
+    public UnityEvent OnActive,OnDisAble;
+    //private void Update()
+    //{
+    //    if(Keyboard.current.yKey.wasPressedThisFrame)
+    //    {
+    //        UIToggle();
+    //    }
+    //}
 
     public void UIToggle()
     {

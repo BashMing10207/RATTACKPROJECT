@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AgentManager : MonoBehaviour, IGetCompoable//GetCompoParent // : Manager<AgentManager>
 {
@@ -12,6 +13,7 @@ public class AgentManager : MonoBehaviour, IGetCompoable//GetCompoParent // : Ma
 
     protected GetCompoParent _parent;
 
+    public UnityEvent OnUnitDieEvent;
     [SerializeField]
     private Unit _unitprefab;
 
@@ -53,6 +55,8 @@ public class AgentManager : MonoBehaviour, IGetCompoable//GetCompoParent // : Ma
         Units.Remove(unit);
 
         Destroy(unit.gameObject);
+
+        OnUnitDieEvent?.Invoke();
     }
 }
 

@@ -21,8 +21,8 @@ public class Tile : MonoBehaviour
     }
     public void ChangeTile(TileType type)
     {
-        _meshfilter.mesh = MapGenerator.Instance.tileTypeSO[(int)type].mesh;
-        _meshRenderer.material = MapGenerator.Instance.tileTypeSO[(int)type].material;
+        _meshfilter.mesh = MapGenerator.Instance.TileTypeSO[(int)type].mesh;
+        _meshRenderer.material = MapGenerator.Instance.TileTypeSO[(int)type].material;
         //print(type.ToString());
     }
 
