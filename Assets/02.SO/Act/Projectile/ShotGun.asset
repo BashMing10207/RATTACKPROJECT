@@ -19,4 +19,6 @@ MonoBehaviour:
   Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   AnimParamName: ShotGun
   HashValue: 425602205
+  ActTypeEnum: 0
+  MaxDistance: 25
   Perfab: {fileID: 9050954676171508603, guid: fae2463af08e0484f8ef56df2dbe66c7, type: 3}

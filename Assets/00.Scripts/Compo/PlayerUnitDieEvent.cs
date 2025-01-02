@@ -14,7 +14,7 @@ public class PlayerUnitDieEvent : MonoBehaviour, IGetCompoable,IAfterInitable
         _unit = entity as Unit;
     }
 
-    private void OnDead()
+    public void OnDead()
     {
         
     }

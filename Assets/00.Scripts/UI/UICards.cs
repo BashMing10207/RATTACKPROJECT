@@ -20,9 +20,8 @@ public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IG
     public UnityEvent OnClicked;
 
     private RectTransform _rectTrm;
-    private Player _parent;
+    private GetCompoParent _parent;
     private int _index = 0, _type =0;
-
     private PlayerAgentManager _manager;
     private ActCommander _commander;
 
@@ -53,14 +52,14 @@ public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IG
 
     public void Initialize(GetCompoParent entity)
     {
-        _parent = entity as Player;
+        _parent = entity;
 
     }
 
     public void AfterInit()
     {
-        _manager = _parent.GetCompo<PlayerAgentManager>();
-        _commander = _parent.GetCompo<ActCommander>();
+        _manager = _parent.GetCompo<AgentManager>(true) as PlayerAgentManager;
+        _commander = _parent.GetCompo<ActCommander>(true);
     }
     public void OutLineHandle(bool enabled)
     {

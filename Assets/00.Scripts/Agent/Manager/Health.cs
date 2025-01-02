@@ -24,7 +24,7 @@ public class Health : MonoBehaviour, IGetDamageable,IGetCompoable
     {
         CurrentHealth -= damage;
 
-        Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
 
         OnHurt?.Invoke();
 

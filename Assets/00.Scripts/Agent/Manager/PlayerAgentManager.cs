@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerAgentManager : AgentManager
+public class PlayerAgentManager : AgentManager,IGetCompoable
 {
     //private
 
@@ -26,6 +26,7 @@ public class PlayerAgentManager : AgentManager
     public float Upward { get; private set; } = 0;
 
 
+
     public override void Initialize(GetCompoParent entity)
     {
         base.Initialize(entity);
@@ -33,14 +34,15 @@ public class PlayerAgentManager : AgentManager
     }
 
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         //MultiGameManager.Instance.PlayerManagerCompo.Add(this);
     }
 
     protected void Init()
     {
-        _playerInput = (_parent as Player).PlayerInput;
+        _playerInput = GameManager.Instance.PlayerInputSO;
 
         _playerInput.UnitSwapEvent += SwapNextUnit;
         _playerInput.OnClickEnter += HoldStart;
@@ -48,18 +50,9 @@ public class PlayerAgentManager : AgentManager
         _playerInput.OnMouseScroll += Updown;
         _playerInput.OnClickEnter2 += HoldCancle;
 
-        SwapUnit(0);
-    }
 
-    private void Update()
-    {
-        for (int i = 0; i < Units.Count; i++)
-        {
-            if (Units[i].transform.position.y < 0)
-            {
-                Units.RemoveAt(i);
-            }
-        }
+
+        SwapUnit(0);
     }
 
     private void SwapNextUnit(int idx)
@@ -84,8 +77,6 @@ public class PlayerAgentManager : AgentManager
             Upward = 0;
             StartHold?.Invoke();
         }
-
-
     }
 
     private void Updown(float axis)
@@ -117,12 +108,13 @@ public class PlayerAgentManager : AgentManager
         if (gameObject.activeInHierarchy)
         {
             //if(GameManager.Instance.IsPlayerturn)
-            Vector3 rot = _parent.GetCompo<CameraManager>().MainCamera1.transform.eulerAngles; 
+            Vector3 rot = _parent.GetCompo<CameraManager>().MainCamera1.transform.eulerAngles;
             dir = Quaternion.Euler(0, rot.y, 0) * dir;
 
             base.GetAction(dir);
         }
-
     }
+
+
 
 }

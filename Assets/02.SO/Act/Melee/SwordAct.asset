@@ -19,5 +19,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 2384eb5de05269b44a58f8dd1d83d725, type: 3}
   AnimParamName: Sword
   HashValue: 1529145355
+  ActTypeEnum: 2
+  MaxDistance: 10
   _targetstat: {fileID: 11400000, guid: 4cc84d2e66452bd4e9ede2e8d3451a58, type: 2}
   _defaultVector: {x: 0, y: -9999, z: 0}

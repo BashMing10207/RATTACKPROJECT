@@ -19,4 +19,6 @@ MonoBehaviour:
   Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   AnimParamName: Grenade
   HashValue: -1520575955
+  ActTypeEnum: 0
+  MaxDistance: 25
   Perfab: {fileID: 3255963914195629583, guid: 94b05f3d0cb38814da0f2a3ad19df084, type: 3}

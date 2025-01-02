@@ -20,4 +20,6 @@ MonoBehaviour:
   Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   AnimParamName: MagicStaff
   HashValue: -868513942
+  ActTypeEnum: 0
+  MaxDistance: 25
   Perfab: {fileID: 3470180028030141798, guid: d20f738cba332dd4dafd1652316bcf32, type: 3}

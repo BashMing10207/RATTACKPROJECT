@@ -532,7 +532,19 @@ MonoBehaviour:
   Owner: {fileID: 2721967281391399299}
   OnDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8976897079719463474}
+        m_TargetAssemblyTypeName: UnitDeadEvent, Assembly-CSharp
+        m_MethodName: OnDead
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHurt:
     m_PersistentCalls:
       m_Calls:
@@ -5696,6 +5708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55236028919859989}
   - component: {fileID: 4800894022123869698}
+  - component: {fileID: 8976897079719463474}
   m_Layer: 7
   m_Name: OnDead
   m_TagString: Untagged
@@ -5728,6 +5741,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f57efd647c15f7478bd380749ce95d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8976897079719463474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342482799918133953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155d613a1a896cc43af72f783f8b573d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5792309149405566387
@@ -5809,6 +5834,8 @@ GameObject:
   - component: {fileID: 5900230659751678992}
   - component: {fileID: 676393718428686393}
   - component: {fileID: 2721967281391399299}
+  - component: {fileID: 6500310375612410665}
+  - component: {fileID: 8810328759758440034}
   m_Layer: 7
   m_Name: WhiteStone
   m_TagString: Hitable
@@ -5879,6 +5906,33 @@ MonoBehaviour:
   _isDisabledObj: {fileID: 0}
   ViewPivot: {fileID: 349969721384126702}
   WeaponTrm: {fileID: 3444005611514620781}
+  MasterController: {fileID: 0}
+--- !u!114 &6500310375612410665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6542755965047461842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2014da81c40dd28449696ccaec161656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerInputSO: {fileID: 11400000, guid: 3d9a97023a41acd4eb2f452df0ee22a8, type: 2}
+  _rigidbody: {fileID: 676393718428686393}
+--- !u!114 &8810328759758440034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6542755965047461842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6657de666d07e9f479de1bb26e65d6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6663085410657581268
 GameObject:
   m_ObjectHideFlags: 0

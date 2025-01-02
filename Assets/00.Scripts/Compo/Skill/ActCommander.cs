@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class ActCommander : MonoBehaviour,IGetCompoable,IAfterInitable
 {
@@ -24,10 +25,10 @@ public class ActCommander : MonoBehaviour,IGetCompoable,IAfterInitable
         _manager.GetCompo<AgentManager>(true).ActionExcutor += TrySkill;
 
     }
-    protected void TrySkill(Vector3 dir)
+
+    public void TrySkill(Vector3 dir, ActSO act)
     {
-        ActSO act = CurrentAct;
-        float power = Mathf.Clamp(dir.magnitude+act.MinCost, 0f, Mathf.Min(ActionPoint,act.MaxCost));
+        float power = Mathf.Clamp(dir.magnitude + act.MinCost, 0f, Mathf.Min(ActionPoint, act.MaxCost));
 
         if (power < act.MinCost)
         {
@@ -37,9 +38,15 @@ public class ActCommander : MonoBehaviour,IGetCompoable,IAfterInitable
 
         _manager.GetCompo<SkillAnimator>().SetAnim(act.HashValue);
         _manager.GetCompo<SkillAnimator>().SetAnim("Attack");
-        _manager.GetCompo<AgentManager>(true).SelectedUnit().GetCompo<AgentActCommander>().ExecuteAct(act, dir.normalized*power);
+        _manager.GetCompo<AgentManager>(true).SelectedUnit().GetCompo<AgentActCommander>().ExecuteAct(act, dir.normalized * power);
 
         ActionPoint -= power;
+    }
+
+    public void TrySkill(Vector3 dir)
+    {
+        ActSO act = CurrentAct;
+        TrySkill(dir, act);
     }
 
     public void SetAct(ActSO act)
@@ -50,5 +57,6 @@ public class ActCommander : MonoBehaviour,IGetCompoable,IAfterInitable
         ////이 아래는 추후에 다른 스크립트로 빼기(꼭 빼야하는...)
         //GetCompo<PlayerActions>().
     }
+
 
 }

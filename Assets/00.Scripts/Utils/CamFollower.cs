@@ -6,7 +6,9 @@ public class CamFollower : MonoBehaviour
     private Transform _trm;
     private void OnEnable()
     {
-        GameManager.Instance.PlayerManagerCompo.GetCompo<CameraManager>().SetVCamTarget(_trm);
+        GameManager.Instance.PlayerManagerCompos[0].GetCompo<CameraManager>().SetVCamTarget(_trm);
+
+        //GameManager.Instance.PlayerManagerCompo.GetCompo<CameraManager>().SetVCamTarget(_trm);
     }
 
     private void OnDisable()

@@ -42,7 +42,7 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
         {
             _cards.Add(_cardParents[i].GetComponentsInChildren<UICards>().ToList());
         }
-        _parent.PlayerInput.Arrow += Arrow;
+        GameManager.Instance.PlayerInputSO.Arrow += Arrow;
 
        
     }
@@ -86,7 +86,7 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
         Vector3 dir = Quaternion.Euler(0, rot.y, 0) * (BashUtils.V2ToV3(_agentManager.PostMousePos - Mouse.current.position.value).normalized);
         //_skillAnimator.transform.SetPositionAndRotation(_parent.SelectedUnit().WeaponTrm.position ,Quaternion.FromToRotation(Vector3.forward, dir));
         _skillAnimator.transform.position = _agentManager.SelectedUnit().WeaponTrm.position;
-        _skillAnimator.transform.rotation = Quaternion.Lerp(_skillAnimator.transform.rotation, Quaternion.FromToRotation(Vector3.forward, dir), 0.2f);
+        _skillAnimator.transform.rotation = Quaternion.Lerp(_skillAnimator.transform.rotation, Quaternion.FromToRotation(Vector3.forward, dir), 0.45f);
     }
 
     private void Arrow(Vector2 dir)

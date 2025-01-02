@@ -6,7 +6,7 @@ public class CameraManager : MonoBehaviour,IGetCompoable,IAfterInitable
     public Camera MainCamera1;
     public CinemachineVirtualCamera VirtualCamera;
 
-    private Player _entity;
+    private GetCompoParent _entity;
     private PlayerInputSO _playerInputSO;
     private Vector3 _camposOffset = new Vector3(0, 35, 0.01f);
 
@@ -17,8 +17,8 @@ public class CameraManager : MonoBehaviour,IGetCompoable,IAfterInitable
 
     public void Initialize(GetCompoParent entity)
     {
-        _entity = entity as Player;
-        _playerInputSO = _entity.PlayerInput;
+        _entity = entity;
+        
     }
     public void AfterInit()
     {
@@ -38,6 +38,7 @@ public class CameraManager : MonoBehaviour,IGetCompoable,IAfterInitable
 
     private void Start()
     {
+        _playerInputSO = GameManager.Instance.PlayerInputSO;
         _playerInputSO.OnMouseScroll += Scrol;
     }
 

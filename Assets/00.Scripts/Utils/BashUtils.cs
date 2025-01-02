@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
     public class BashUtils
@@ -7,6 +8,7 @@ using UnityEngine;
             return new Vector3(v.x, 0, v.y);
         }
     }
+[Serializable]
 public class SetablePair<T, T2> //c#의 Pair와 Tuple은 readonly이기에 새로 만든
 {
     public T First { get; set; }

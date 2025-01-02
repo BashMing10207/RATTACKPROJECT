@@ -11,13 +11,14 @@ public class GameManager : GetCompoParent //Manager<GameManager>
     private bool _isPlayerturn =true;
     public bool IsPlayerturn => _isPlayerturn;
 
-    public List<Player> PlayerManagerCompos = new List<Player>();
-    public EnemyManager EnemyManagerCompo;
-    public Player PlayerManagerCompo => PlayerManagerCompos[_isPlayerturn ? 0:1];
+    public List<GetCompoParent> PlayerManagerCompos = new List<GetCompoParent>();
+    //public EnemyManager EnemyManagerCompo;
+    public GetCompoParent PlayerManagerCompo => PlayerManagerCompos[_isPlayerturn ? 0:1];
 
     public event Action OnTwoTurnEndEvent,OnTurnEndEvent;
     public static GameManager Instance;
 
+    public PlayerInputSO PlayerInputSO;
 protected override void Awake()
     {
         Instance = this;
@@ -25,6 +26,7 @@ protected override void Awake()
         OnTurnEnd += TurnEnd;
     }
 
+    [ContextMenu("TurnChange")]
     private void TurnEnd()
     {
         PlayerManagerCompo.gameObject.SetActive(false);

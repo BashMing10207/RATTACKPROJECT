@@ -10,7 +10,7 @@ public class StatChangeSO : ActSO
 
     [SerializeField] 
     protected int _keepingTurn = 10;
-    public override void RunAct(Vector3 dir, ref Agent agent)
+    public override void RunAct(Vector3 dir, Agent agent)
     {
         Debug.Log("a");
         float strength = 1;

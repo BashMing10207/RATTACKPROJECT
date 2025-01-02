@@ -8,7 +8,7 @@ public class MoveActSO : ActSO
     private StatSO _targetstat;
     [SerializeField]
     private Vector3 _defaultVector = Vector3.zero;
-    public override void RunAct(Vector3 dir, ref Agent agent)
+    public override void RunAct(Vector3 dir,Agent agent)
     {
         if (_targetstat == null) return;
         StatSO stat = agent.GetCompo<AgentStat>().GetStat(_targetstat.StatName);

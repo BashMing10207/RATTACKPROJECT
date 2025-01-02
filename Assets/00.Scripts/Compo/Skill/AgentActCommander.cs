@@ -14,7 +14,7 @@ public class AgentActCommander : MonoBehaviour, IGetCompoable
 
     public void ExecuteAct(ActSO act, Vector3 dir)
     {
-        act.RunAct(dir, ref _agent);
+        act.RunAct(dir,_agent);
     }
 
 }
