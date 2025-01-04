@@ -13,6 +13,9 @@ public class AgentManager : MonoBehaviour, IGetCompoable//GetCompoParent // : Ma
 
     protected GetCompoParent _parent;
 
+    public Action<Unit> OnSwapUnit;
+
+
     public UnityEvent OnUnitDieEvent;
     [SerializeField]
     private Unit _unitprefab;
@@ -29,7 +32,6 @@ public class AgentManager : MonoBehaviour, IGetCompoable//GetCompoParent // : Ma
         foreach (Unit unit in Units)
         {
             unit.Init(_parent);
-            print(unit.gameObject.name);
 
         }
     }
@@ -50,13 +52,51 @@ public class AgentManager : MonoBehaviour, IGetCompoable//GetCompoParent // : Ma
         unit.Init(_parent);
     }
 
-    public void UnitDie(Unit unit)
+    protected virtual void SwapUnit(int idx)
     {
+        if(SelectedUnitIdx < Units.Count)
+        Units[SelectedUnitIdx]?.SelectVisual(false);
+        if (Units.Count < idx)
+        {
+            idx = 0;
+        }
+        if (Units.Count == 0)
+        {
+            _parent.GetCompo<GameOverEvent>().GameOver();
+            return;
+        }
+
+        SelectedUnitIdx = idx;
+        Units[idx].SelectVisual(true);
+        OnSwapUnit?.Invoke(Units[idx]);
+    }
+
+    public virtual void UnitDie(Unit unit)
+    {
+
+        Unit slected = SelectedUnit();
+
         Units.Remove(unit);
+
+        if (slected != unit)
+        {
+            SwapUnit(Units.IndexOf(slected));
+        }
+        else
+        {
+
+            SwapUnit(0);
+        }
+
 
         Destroy(unit.gameObject);
 
         OnUnitDieEvent?.Invoke();
+
+        
+
     }
+
 }
+
 

@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour,IGetCompoable,IAfterInitable
     }
     public void AfterInit()
     {
-        _entity.GetCompo<PlayerAgentManager>().OnSwapUnit += ChangeTargetProcess;
+        _entity.GetCompo<AgentManager>(true).OnSwapUnit += ChangeTargetProcess;
     }
 
     private void ChangeTargetProcess(Unit unit)

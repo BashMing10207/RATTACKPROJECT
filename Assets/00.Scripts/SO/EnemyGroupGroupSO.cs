@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyGroup", menuName = "SO/EnemyGroup")]
 public class EnemyGroupGroupSO : ScriptableObject
 {
-    [SerializeField]
-    private List<EnemyGroup> Units = new(); 
+    public List<EnemyGroup> Units = new(); 
 
     public Unit IndexOfUnit(int idx)
     {

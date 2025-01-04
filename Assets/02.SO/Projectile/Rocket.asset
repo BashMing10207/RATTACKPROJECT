@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5531380924b34b49b291c34db33a87b, type: 3}
   m_Name: Rocket
   m_EditorClassIdentifier: 
-  Speed: 15
+  Speed: 6
   Damage: 11
   Power: 0.5
   Radius: 0.1
   Down: 1
-  SpeedModifyMulti: 0.1
+  SpeedModifyMulti: 0.05
   GameObj: {fileID: 0}
   DieEffect: {fileID: 0}

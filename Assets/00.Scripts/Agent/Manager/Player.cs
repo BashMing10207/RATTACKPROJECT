@@ -1,9 +1,9 @@
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Player : GetCompoParent
 {
     //public PlayerInputSO PlayerInput;
-
     protected override void Awake()
     {
         base.Awake();

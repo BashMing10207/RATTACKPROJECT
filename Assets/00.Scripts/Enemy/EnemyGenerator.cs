@@ -22,7 +22,11 @@ public class EnemyGenerator : MonoBehaviour, IGetCompoable,IAfterInitable
 
     public void GenEnemyies(Vector3 pos,int Type)
     {
-
+        if(Type < CurrentGenEnemyList.Units.Count)
+        {
+            Unit enemyUnit = Instantiate(CurrentGenEnemyList.IndexOfUnit(Type), pos, Quaternion.identity);
+            _enemyManager.AddStone(enemyUnit);
+        }
     }
 
 }

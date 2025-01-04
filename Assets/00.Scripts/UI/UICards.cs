@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IGetCompoable,IPointerClickHandler,IPointerDownHandler,IAfterInitable
+public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IGetCompoable,IPointerDownHandler,IAfterInitable
 {
     [SerializeField]
     private Outline _outLineRenderer;
@@ -29,6 +29,7 @@ public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IG
     private void OnEnable()
     {
         _rectTrm = GetComponent<RectTransform>();
+        print(_rectTrm.rect);
         OnClicked.AddListener(SetAction);
     }
     public void Init(ActSO act,int idx,int type)
@@ -80,11 +81,6 @@ public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IG
     public void OnPointerExit(PointerEventData eventData)
     {
         _parent.GetCompo<PlayerActions>().DisableToolTip();
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        
     }
 
     public void SetAction()

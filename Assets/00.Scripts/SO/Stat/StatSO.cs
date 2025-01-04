@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StatSO", menuName = "SO/Stat/StatSO")]
+[Serializable]
 public class StatSO : ScriptableObject, ICloneable //SO를 생성할때마다 인스턴스 되게 하는거?
 {
     public string StatName;
     public string Description;
 
     public float Value => _baseValue * GetModifierValue(); //람다식 :D
+    public float BaseValue => _baseValue;
 
     [SerializeField]
     protected float _baseValue = 1;

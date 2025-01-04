@@ -347,7 +347,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 150}
+  m_LocalScale: {x: 1, y: 1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8445585769269439865}
@@ -655,7 +655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5360043051918406714}
-  - component: {fileID: 2943289818834905306}
+  - component: {fileID: 4286433773862818599}
   m_Layer: 7
   m_Name: Stat
   m_TagString: Untagged
@@ -678,7 +678,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 837836596169734895}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2943289818834905306
+--- !u!114 &4286433773862818599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -687,12 +687,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3758087828314721632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13f2a8a484d247a42a71c4352754e7fc, type: 3}
+  m_Script: {fileID: 11500000, guid: bf8344fb73befee4a821b0035a9ef604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _stats:
-  - {fileID: 11400000, guid: 655e5ea7d2136ce41ad6a35045f1757a, type: 2}
-  - {fileID: 11400000, guid: 4cc84d2e66452bd4e9ede2e8d3451a58, type: 2}
+  - Stat: {fileID: 11400000, guid: 655e5ea7d2136ce41ad6a35045f1757a, type: 2}
+    IsOverride: 1
+    OVerrideValue: 1
+  - Stat: {fileID: 11400000, guid: ea5a6d2515169c1409b22c8af8a506f2, type: 2}
+    IsOverride: 1
+    OVerrideValue: 1
+  - Stat: {fileID: 11400000, guid: 4cc84d2e66452bd4e9ede2e8d3451a58, type: 2}
+    IsOverride: 1
+    OVerrideValue: 5
 --- !u!1 &4567669819321386597
 GameObject:
   m_ObjectHideFlags: 0
@@ -5658,6 +5665,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1035373972741269250}
   - component: {fileID: 8684007085863168550}
+  - component: {fileID: 5331885085521333184}
+  - component: {fileID: 1037062645145092239}
   m_Layer: 7
   m_Name: SKill
   m_TagString: Untagged
@@ -5692,12 +5701,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8873f0ee13b48949816922348a80a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OwnActs:
-  - {fileID: 11400000, guid: 8dfd30f66e92b7b4ca287a59a088cf29, type: 2}
-  - {fileID: 11400000, guid: 44e4c78df329fd345ad73b3783eec104, type: 2}
-  - {fileID: 11400000, guid: 72ba724dad4ae514196fe17c33c260d1, type: 2}
-  - {fileID: 11400000, guid: 2e658c4f45153b846ac27f84cc61487d, type: 2}
   WeaponTrm: {fileID: 3444005611514620781}
+--- !u!114 &5331885085521333184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4934429446400682257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66ead826b492564dbfc96386574331a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Items:
+  - {fileID: 11400000, guid: f8d2b71adbf465b4a85489f746a92918, type: 2}
+--- !u!114 &1037062645145092239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4934429446400682257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be24330842a7467468e32f4e619e1e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddSkillList:
+  - First: {fileID: 0}
+    Second: 0
+  _canHaveSkill: {fileID: 11400000, guid: 8c7fffa4432f88647889b6aaf5495cd8, type: 2}
 --- !u!1 &5342482799918133953
 GameObject:
   m_ObjectHideFlags: 0
@@ -5834,8 +5868,8 @@ GameObject:
   - component: {fileID: 5900230659751678992}
   - component: {fileID: 676393718428686393}
   - component: {fileID: 2721967281391399299}
-  - component: {fileID: 6500310375612410665}
   - component: {fileID: 8810328759758440034}
+  - component: {fileID: 2724404114541303891}
   m_Layer: 7
   m_Name: WhiteStone
   m_TagString: Hitable
@@ -5907,20 +5941,6 @@ MonoBehaviour:
   ViewPivot: {fileID: 349969721384126702}
   WeaponTrm: {fileID: 3444005611514620781}
   MasterController: {fileID: 0}
---- !u!114 &6500310375612410665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6542755965047461842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2014da81c40dd28449696ccaec161656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerInputSO: {fileID: 11400000, guid: 3d9a97023a41acd4eb2f452df0ee22a8, type: 2}
-  _rigidbody: {fileID: 676393718428686393}
 --- !u!114 &8810328759758440034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5931,6 +5951,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6657de666d07e9f479de1bb26e65d6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2724404114541303891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6542755965047461842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb021a5799a85946aab17fa0a8cd04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6663085410657581268
@@ -6349,7 +6381,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7740950652453935368}

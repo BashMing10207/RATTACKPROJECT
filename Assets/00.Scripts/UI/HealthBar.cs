@@ -26,6 +26,6 @@ public class HealthBar : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         
         _image.fillAmount = _health.CurrentHealth/_health.MaxHealth;
-        _textMeshPro.text = (_health.CurrentHealth/ _health.MaxHealth).ToString()+"%";
+        _textMeshPro.text = (_health.CurrentHealth/ _health.MaxHealth*100).ToString()+"%";
     }
 }

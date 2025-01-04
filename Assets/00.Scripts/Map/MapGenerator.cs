@@ -48,7 +48,7 @@ public class MapGenerator : MonoBehaviour
     public Vector3[,] TargetPoses = new Vector3[64, 64];
 
     [SerializeField]
-    private GameObject _pref;
+    private Tile _pref;
     [SerializeField]
     private Texture2D[] _mapImgs;
     private int _mapIdx = 0;
@@ -56,38 +56,46 @@ public class MapGenerator : MonoBehaviour
     [SerializeField]
     private AgentManager _playerAgentManager;
 
+    private float _time = 0;
     private void Awake()
     {
         Instance = this;
     }
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
 
         //var bArray1 = _test.GetRawTextureData<Color32>();
-        var bArray = _test.GetPixels32(0);
+        //var bArray = _test.GetPixels32(0);
         //string texAsString = Convert.ToBase64String(bArray);
         for (int i = 0; i < _size; i++)
         {
             for (int j = 0; j < _size; j++)
             {
-                Tiles[i, j] = Instantiate(_pref, transform.position + new Vector3(i * _tileSize, ((float)(bArray[(_size) * i + j]).r) == 0 ? -6 : ((float)(bArray[(_size) * i + j]).r) / _height, j * _tileSize), Quaternion.identity, transform)
-                    .GetComponent<Tile>();
-                TargetPoses[i, j] = transform.position + new Vector3(i * _tileSize, ((float)(bArray[(_size) * i + j]).r) / _height, j * _tileSize);
+                //float heighttmp = (float)(bArray[(_size) * i + j]).r;
+                Tiles[i, j] = Instantiate(_pref, transform.position + new Vector3(i * _tileSize, 0, j * _tileSize), Quaternion.identity, transform);
+                TargetPoses[i, j] = transform.position + new Vector3(i * _tileSize, 0, j * _tileSize);
             }
         }
+        ChangeMap(_test);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        for (int i = 0; i < _size; i++)
+
+        if(_time>0)
         {
-            for (int j = 0; j < _size; j++)
+            _time -= Time.deltaTime;
+            for (int i = 0; i < _size; i++)
             {
-                Tiles[i, j].transform.position = Vector3.Lerp(Tiles[i, j].transform.position, TargetPoses[i, j], _speed * Time.deltaTime);
+                for (int j = 0; j < _size; j++)
+                {
+                    Tiles[i, j].transform.position = Vector3.Lerp(Tiles[i, j].transform.position, TargetPoses[i, j], _speed * Time.deltaTime);
+                }
             }
         }
+
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -99,27 +107,32 @@ public class MapGenerator : MonoBehaviour
     public void ming()
     {
         _mapIdx = ++_mapIdx % _mapImgs.Length;
-        ChangeMap(_mapImgs[_mapIdx]);
+        //ChangeMap(_mapImgs[_mapIdx]);
+        StartCoroutine(ChangeMapCorutin(_mapImgs[_mapIdx]));
+        _time = 1.5f / _speed;
     }
     public void ChangeMap(Texture2D targetmap)
     {
         //var bArray1 = _test.GetRawTextureData<Color32>();
         var bArray = targetmap.GetPixels32(0);
         //string texAsString = Convert.ToBase64String(bArray);
+        int playerCnt = 0;
+
         for (int i = 0; i < _size; i++)
         {
             for (int j = 0; j < _size; j++)
             {
-                TargetPoses[i, j] = transform.position + new Vector3(i * _tileSize, ((float)(bArray[(_size) * i + j]).r) == 0 ? -6 : ((float)(bArray[(_size) * i + j]).r) / _height, j * _tileSize);
+                float heighttmp = (float)(bArray[(_size) * i + j]).r;
+                TargetPoses[i, j] = transform.position + new Vector3(i * _tileSize, heighttmp == 0 ? -6 : heighttmp / _height, j * _tileSize);
                 int a = (int)((float)(bArray[(_size) * i + j]).b) / 50;
                 Tiles[i, j].ChangeTile(TileType.Dirt + a);
 
                 if ((bArray[(_size) * i + j]).g != 0)
                 {
-                    if (((bArray[(_size) * i + j]).g) < GameManager.Instance.PlayerManagerCompos[0].GetCompo<PlayerAgentManager>().Units.Count)
+                    if (playerCnt < GameManager.Instance.PlayerManagerCompos[0].GetCompo<PlayerAgentManager>().Units.Count)
                     {
-                        AgentForceMoveCompo forceMov = _playerAgentManager.Units[(bArray[(_size) * i + j]).g].GetCompo<AgentForceMoveCompo>();
-                        forceMov.SetTargetPos(new Vector3(i * _tileSize, _heightOffset, j * _tileSize));
+                        AgentForceMoveCompo forceMov = _playerAgentManager.Units[playerCnt++].GetCompo<AgentForceMoveCompo>();
+                        forceMov.SetTargetPos(transform.position + new Vector3(i * _tileSize, _heightOffset, j * _tileSize));
                         forceMov.SetMoveTime(1.5f);
 
                     }
@@ -127,13 +140,48 @@ public class MapGenerator : MonoBehaviour
 
                 if ((bArray[(_size) * i + j]).a != 0)
                 {
-                    if (((bArray[(_size) * i + j]).a) < GameManager.Instance.PlayerManagerCompos[0].GetCompo<PlayerAgentManager>().Units.Count)
-                    {
-
-                    }
+                    //if (((bArray[(_size) * i + j]).a) < GameManager.Instance.PlayerManagerCompos[1].GetCompo<EnemyGenerator>().CurrentGenEnemyList.Units.Count)
+                    GameManager.Instance.PlayerManagerCompos[1].GetCompo<EnemyGenerator>().GenEnemyies(new Vector3(i * _tileSize, _heightOffset, j * _tileSize), (int)(bArray[(_size) * i + j]).a / 10);
                 }
                 //tiles[i, j].material = _tileMats[];
             }
         }
+    }
+    private IEnumerator ChangeMapCorutin(Texture2D targetmap)
+    {
+        //var bArray1 = _test.GetRawTextureData<Color32>();
+        var bArray = targetmap.GetPixels32(0);
+        //string texAsString = Convert.ToBase64String(bArray);
+        int playerCnt = 0;
+
+        for (int i = 0; i < _size; i++)
+        {
+            for (int j = 0; j < _size; j++)
+            {
+                float heighttmp = (float)(bArray[(_size) * i + j]).r;
+                TargetPoses[i, j] = transform.position + new Vector3(i * _tileSize, heighttmp == 0 ? -6 : heighttmp / _height, j * _tileSize);
+                int a = (int)((float)(bArray[(_size) * i + j]).b) / 50;
+                Tiles[i, j].ChangeTile(TileType.Dirt + a);
+
+                if ((bArray[(_size) * i + j]).g != 0)
+                {
+                    if (playerCnt < GameManager.Instance.PlayerManagerCompos[0].GetCompo<PlayerAgentManager>().Units.Count)
+                    {
+                        AgentForceMoveCompo forceMov = _playerAgentManager.Units[playerCnt++].GetCompo<AgentForceMoveCompo>();
+                        forceMov.SetTargetPos(transform.position + new Vector3(i * _tileSize, _heightOffset, j * _tileSize));
+                        forceMov.SetMoveTime(1.5f);
+
+                    }
+                }
+
+                if ((bArray[(_size) * i + j]).a != 0)
+                {
+                    //if (((bArray[(_size) * i + j]).a) < GameManager.Instance.PlayerManagerCompos[1].GetCompo<EnemyGenerator>().CurrentGenEnemyList.Units.Count)
+                    GameManager.Instance.PlayerManagerCompos[1].GetCompo<EnemyGenerator>().GenEnemyies(new Vector3(i * _tileSize, _heightOffset, j * _tileSize), (int)(bArray[(_size) * i + j]).a / 10);
+                }
+                //tiles[i, j].material = _tileMats[];
+            }
+        }
+        yield return null;
     }
 }

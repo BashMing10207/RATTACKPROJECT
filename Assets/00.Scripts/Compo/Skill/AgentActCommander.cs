@@ -4,7 +4,7 @@ using UnityEngine;
 public class AgentActCommander : MonoBehaviour, IGetCompoable
 {
     private Agent _agent;
-    public List<ActSO> OwnActs = new List<ActSO>();
+    //public List<ActSO> OwnActs = new List<ActSO>();
     public Transform WeaponTrm; 
 
     public void Initialize(GetCompoParent entity)

@@ -1,8 +1,9 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[SerializeField]
+[Serializable]
 public class SkillAndCool
 {
     public ActSO First;
@@ -20,10 +21,21 @@ public class SkillAdder : MonoBehaviour, IGetCompoable
     private GetCompoParent _playerManager;
     //public List<SetablePair<ActSO, int>> AddSkillList = new(); //직렬화가 안되서 디버그 하기 불편한...
     public List<SkillAndCool> AddSkillList = new();
+    [SerializeField]
+    private UnitSkillInitSO _canHaveSkill;
+
 
     private void Start()
     {
         GameManager.Instance.OnTwoTurnEndEvent += AddSkill;
+
+        for(int i = 0; i < AddSkillList.Count; i++)
+        {
+            if( AddSkillList[i].First == null )
+            {
+                SetAddList(_canHaveSkill.CanHaveSkillList[UnityEngine.Random.Range(0,_canHaveSkill.CanHaveSkillList.Count)], i);
+            }
+        }
     }
 
 
@@ -34,7 +46,15 @@ public class SkillAdder : MonoBehaviour, IGetCompoable
 
     public void AddAddList(ActSO act)
     {
+        if(act.ActTypeEnum == ActType.Passive)
+        {
+            act.RunAct(Vector3.up,_playerManager);
+        }
         AddSkillList.Add(new (act,act.SKillCoollDown));
+    }
+    public void SetAddList(ActSO act,int index)
+    {
+        AddSkillList[index] =(new(act, act.SKillCoollDown));
     }
 
     public void RemoveAddList(ActSO act)

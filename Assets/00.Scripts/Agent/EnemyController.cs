@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour, IGetCompoable, IAfterInitable
         _cameraManager = _parent.GetCompo<CameraManager>();
 
         GameManager.Instance.OnTurnEndEvent += EnemyTurn;
-        EnemyTurn();
+        //EnemyTurn();
     }
 
     public void EnemyTurn()
@@ -56,7 +56,17 @@ public class EnemyController : MonoBehaviour, IGetCompoable, IAfterInitable
         if (!GameManager.Instance.IsPlayerturn)
         {
             _parent.gameObject.SetActive(true);
+            if (_enemyAgentManager.Units.Count <= 0)
+            {
+                GameManager.Instance.OnTurnEnd();
+                return;
+            }
             StartCoroutine(EnemyPlay());
+        }
+        else
+        {
+            _parent.gameObject.SetActive(false);
+            print("애너미 엄마 끄기");
         }
     }
 
@@ -68,6 +78,11 @@ public class EnemyController : MonoBehaviour, IGetCompoable, IAfterInitable
         while (_itemManager.Items.Count > 0)
         {
             yield return new WaitForSeconds(_waitTime);
+            if (_enemyAgentManager.Units.Count <= 0)
+            {
+                GameManager.Instance.OnTurnEnd();
+                break;
+            }
 
             bool canUse = DoAction();
             yield return new WaitForSeconds(0.3f);

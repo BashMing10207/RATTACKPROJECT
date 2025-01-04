@@ -10,7 +10,6 @@ public class PlayerAgentManager : AgentManager,IGetCompoable
     [SerializeField]
     private float _holdMulti = 25;//이건 나중에 인풋같은 거로 뺼 것.
 
-    public event Action<Unit> OnSwapUnit;
     public Vector2 PostMousePos { get; private set; } = new Vector2(0, 0);
 
     public bool IsHolding = false;
@@ -57,15 +56,12 @@ public class PlayerAgentManager : AgentManager,IGetCompoable
 
     private void SwapNextUnit(int idx)
     {
-        SwapUnit((SelectedUnitIdx + idx) % Units.Count);
+        SwapUnit(Mathf.Abs(SelectedUnitIdx + idx) % Units.Count);
     }
-    private void SwapUnit(int idx)
+    protected override void SwapUnit(int idx)
     {
+        base.SwapUnit(idx);
         ChangeSelectUnit?.Invoke();
-        Units[SelectedUnitIdx].SelectVisual(false);
-        SelectedUnitIdx = idx;
-        Units[idx].SelectVisual(true);
-        OnSwapUnit?.Invoke(Units[idx]);
     }
 
     private void HoldStart()
@@ -115,6 +111,8 @@ public class PlayerAgentManager : AgentManager,IGetCompoable
         }
     }
 
-
-
+    public override void UnitDie(Unit unit)
+    {
+        base.UnitDie(unit);
+    }
 }

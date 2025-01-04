@@ -17,7 +17,8 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
   m_LockedProperties: 
@@ -92,6 +93,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ColorPower: 0.7
@@ -106,8 +108,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Metallic: 0.8
-    - _Ming: 15
+    - _Metallic: 0.1
+    - _Ming: 5
     - _Normal: 0.85
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -122,15 +124,17 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _Tile1: 70
-    - _Tile1_1: 80
+    - _Tile1: 8
+    - _Tile1_1: 35
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 0.6603774, g: 0.589653, b: 0.49216804, a: 1}
     - _Color: {r: 0.6603774, g: 0.589653, b: 0.49216804, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Main_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Main_Color: {r: 0.4490565, g: 0.4490565, b: 0.4490565, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -22,7 +22,9 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
     private Player _parent;
 
     private PlayerAgentManager _agentManager;
-    private ItemManager _itemManager;
+
+    private ActCommander _actCommander;
+    private ItemManager[] _itemManager = new ItemManager[2];
     [SerializeField]
     private int _currentActType = 0, _currentActIdx = 0;
 
@@ -50,7 +52,8 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
     public void AfterInit()
     {
         _agentManager = _parent.GetCompo<PlayerAgentManager>();
-        _itemManager = _parent.GetCompo<ItemManager>();
+        _itemManager[0] = _parent.GetCompo<ItemManager>();
+        _actCommander = _parent.GetCompo<ActCommander>(true);
     }
 
     private void OnDisable()
@@ -91,8 +94,9 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
 
     private void Arrow(Vector2 dir)
     {
-        SetAction(((int)dir.y + _currentActIdx) % 2, ((int)dir.x + _currentActIdx) % (((int)dir.y + _currentActIdx) % 2 == 0 ?
-            _agentManager.SelectedUnit().GetCompo<AgentActCommander>().OwnActs.Count : _itemManager.Items.Count));
+        //_itemManager[1] = _agentManager.SelectedUnit().GetCompo<ItemManager>();
+
+        SetAction(Mathf.Abs(((int)dir.y +_currentActType) % 2), ((int)dir.x + _currentActIdx) % (_itemManager[Mathf.Abs(((int)dir.y + _currentActType) % 2)].Items.Count));
     }
 
     public void SetCurrentAct()
@@ -105,11 +109,10 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
         _skillAnimator.SetAnim(_cards[type][idx].Act.HashValue);
         _cards[_currentActType][_currentActIdx].OutLineHandle(false);
 
-        //_currentActType = type;
-        Debug.Log("이부분은 나중에 알피지 할 때 쓰이다");
+        _currentActType = type;
         _currentActIdx = idx;
 
-        _parent.GetCompo<ActCommander>(true).SetAct(_cards[type][idx].Act);
+        _actCommander.SetAct(_cards[type][idx].Act);
         _cards[type][idx].OutLineHandle(true);
 
         _cardParents[0].Refresh();
@@ -125,30 +128,25 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
         //        _cards[i][j].Init()
         //    }
         //}
-
-        List<ActSO> unitOwnList = _agentManager.SelectedUnit().GetCompo<AgentActCommander>().OwnActs;
-
-        for (int j = 0; j < _cards[0].Count; j++)
+        if (didStart)
         {
-            bool isExist = unitOwnList.Count > j;
-            _cards[0][j].SetActive(isExist);
+            _itemManager[1] = _agentManager.SelectedUnit().GetCompo<ItemManager>();
 
-            if (isExist)
-                _cards[0][j].Init(unitOwnList[j], j, 0);
+            for (int i = 0; i < _cards.Count; i++)
+            {
+                for (int j = 0; j < _cards[0].Count; j++)
+                {
+                    bool isExist = _itemManager[i].Items.Count > j;
+                    _cards[i][j].SetActive(isExist);
 
+                    if (isExist)
+                        _cards[i][j].Init(_itemManager[i].Items[j], j, i);
+                }
+            }
+
+            SetAction(_currentActType, _currentActIdx);
         }
-
-        for (int j = 0; j < _cards[0].Count; j++)
-        {
-            bool isExist = _itemManager.Items.Count > j;
-            _cards[1][j].SetActive(isExist);
-
-            if (isExist)
-                _cards[1][j].Init(_itemManager.Items[j], j, 1);
-
-        }
-
-        SetAction(_currentActType, _currentActIdx);
+       
     }
 
     public void SetToolTip(Vector3 pos, string s)
@@ -166,36 +164,30 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
     {
         _skillAnimator.SetAnim("Attack");
 
-        if (_itemManager.Items.Count > 0)
+        for (int i = 0; i < _cards.Count; i++)
         {
-            if (_currentActType == 1)
+            if (_itemManager[i].Items.Count > 0)
             {
-                _itemManager.Items.RemoveAt(_currentActIdx);
-            }
-            List<ActSO> unitOwnList = _agentManager.SelectedUnit().GetCompo<AgentActCommander>().OwnActs;
+                if (_currentActType == 1)
+                {
+                    _itemManager[i].Items.RemoveAt(_currentActIdx);
+                }
+                List<ActSO> unitOwnList = _agentManager.SelectedUnit().GetCompo<ItemManager>().Items;
 
-            for (int j = 0; j < _cards[0].Count; j++)
-            {
-                bool isExist = unitOwnList.Count > j;
-                _cards[0][j].SetActive(isExist);
 
-                if (isExist)
-                    _cards[0][j].Init(unitOwnList[j], j, 0);
+                for (int j = 0; j < _cards[0].Count; j++)
+                {
+                    bool isExist = unitOwnList.Count > j;
+                    _cards[i][j].SetActive(isExist);
 
-            }
-
-            for (int j = 0; j < _cards[0].Count; j++)
-            {
-                bool isExist = _itemManager.Items.Count > j;
-                _cards[1][j].SetActive(isExist);
-
-                if (isExist)
-                    _cards[1][j].Init(_itemManager.Items[j], j, 1);
+                    if (isExist)
+                        _cards[i][j].Init(unitOwnList[j], j, i);
+                }
 
             }
         }
 
-        StartCoroutine(RemoveCards());
+            StartCoroutine(RemoveCards());
     }
 
     private IEnumerator RemoveCards()
@@ -211,10 +203,9 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
         //}
 
         SetAction(_currentActType, _currentActIdx);
-        if (_itemManager.Items.Count <= 0)
+       // if (_itemManager[_currentActType].Items.Count <= 0)
         {
-            _parent.GetCompo<ActCommander>(true).CurrentAct = null;
-
+            _actCommander.CurrentAct = null;
         }
     }
 

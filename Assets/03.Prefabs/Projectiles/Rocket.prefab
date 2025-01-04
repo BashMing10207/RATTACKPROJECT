@@ -4948,7 +4948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d0300546f24154bb5cfdfca708447b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxTime: 15
+  _maxTime: 5
   _targetLayer:
     serializedVersion: 2
     m_Bits: 187
@@ -4999,7 +4999,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _rotateDir: {x: 1, y: 0, z: 0}
-  _downSpeed: 4
+  _downSpeed: 1
 --- !u!114 &6847957784179393308
 MonoBehaviour:
   m_ObjectHideFlags: 0
