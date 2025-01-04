@@ -7,17 +7,18 @@ public class MeshSmooth : MonoBehaviour
 
     private void Awake()
     {
-        MeshSmoother();
+        //MeshSmoother();
     }
 
     private void OnValidate()
     {
-        MeshSmoother();
+        //MeshSmoother();
     }
 
         private void MeshSmoother()
-    {
-        _meshRenderer = GetComponent<MeshFilter>();
-        BashUtils.SmoothNormals(_meshRenderer.mesh);
-    }
+        {
+            _meshRenderer = GetComponent<MeshFilter>();
+        if( _meshRenderer != null )
+            BashUtils.SmoothNormals(_meshRenderer.mesh);
+        }
 }

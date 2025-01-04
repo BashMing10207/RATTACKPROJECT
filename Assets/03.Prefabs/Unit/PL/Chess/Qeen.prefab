@@ -465,10 +465,10 @@ MonoBehaviour:
     OVerrideValue: 1
   - Stat: {fileID: 11400000, guid: ea5a6d2515169c1409b22c8af8a506f2, type: 2}
     IsOverride: 1
-    OVerrideValue: 1
+    OVerrideValue: 3
   - Stat: {fileID: 11400000, guid: 4cc84d2e66452bd4e9ede2e8d3451a58, type: 2}
     IsOverride: 1
-    OVerrideValue: 5
+    OVerrideValue: 10
 --- !u!1 &1591499421870584597
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591499421870584597}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.07, y: -0.41111135, z: 8.95492}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -516,7 +516,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591499421870584597}
   serializedVersion: 4
-  m_Mass: 2
+  m_Mass: 1.5
   m_Drag: 2.2
   m_AngularDrag: 15
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1332,7 +1332,6 @@ GameObject:
   - component: {fileID: 6015818690827815648}
   - component: {fileID: 8693848833733316568}
   - component: {fileID: 8758164685948805178}
-  - component: {fileID: 4628176339132867211}
   - component: {fileID: 6361965447806963293}
   m_Layer: 5
   m_Name: UI
@@ -1407,23 +1406,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &4628176339132867211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6829903403167555623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &6361965447806963293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1666,6 +1648,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AddSkillList:
+  - First: {fileID: 0}
+    Second: 0
   - First: {fileID: 0}
     Second: 0
   _canHaveSkill: {fileID: 11400000, guid: 8c7fffa4432f88647889b6aaf5495cd8, type: 2}

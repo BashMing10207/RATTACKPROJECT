@@ -2,59 +2,53 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
+using Unity.Entities.UniversalDelegates;
 using Unity.Mathematics;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
-    public class BashUtils
+public class BashUtils
+{
+    public static Vector3 V2ToV3(Vector2 v)
     {
-        public static Vector3 V2ToV3(Vector2 v)
-        {
-            return new Vector3(v.x, 0, v.y);
-        }
-    public static void SmoothNormals(Mesh m)
+        return new Vector3(v.x, 0, v.y);
+    }
+    public static void SmoothNormals(Mesh mesh)
     {
-        byte _useSmoothNormals = 1;
+        var trianglesOriginal = mesh.triangles;
+        var triangles = trianglesOriginal.ToArray();
 
-        NativeArray<Vector3> _vertices = new NativeArray<Vector3>(m.vertices, Allocator.Temp);
-        NativeArray<Vector3> _normals = new NativeArray<Vector3>(m.normals, Allocator.Temp);
-        NativeHashMap<float3, float3> _normalsUnityHash = new NativeHashMap<float3, float3>(m.normals.Length, Allocator.Temp);
-        for (int v = 0; v < _vertices.Length; v += 3)
+        var vertices = mesh.vertices;
+
+        var mergeIndices = new Dictionary<int, int>();
+
+        for (int i = 0; i < vertices.Length; i++)
         {
-            float3x3 vertex3 = new float3x3(_vertices[v], _vertices[v + 1], _vertices[v + 2]);
-            float3 normalFlat = math.normalize(math.cross(vertex3[2] - vertex3[0], vertex3[1] - vertex3[0]));
+            var vertexHash = vertices[i].GetHashCode();
 
-            for (int n = 0; n < 3; n++)
+            if (mergeIndices.TryGetValue(vertexHash, out var index))
             {
-                float3 vertexHash = math.floor(vertex3[n] * 1000f + 0.5f) * 0.001f; // ROUNDS THE FLOAT3 TO THE 3rd DECIMAL PLACE, OTHERWISE IT'S NOT USABLE AS A KEY
-                int count = v + n;
-
-                switch (_useSmoothNormals)
-                {
-                    case 1:
-                        switch (_normalsUnityHash.ContainsKey(vertexHash))
-                        {
-                            case true:
-                                break;
-                            case false:
-                                _normalsUnityHash.Add(vertexHash, normalFlat);
-                                break;
-                        }
-
-                        _normals[count] = _normalsUnityHash[vertexHash];
-                        break;
-                    case 0:
-                        _normals[count] = normalFlat;
-                        break;
-                }
+                for (int j = 0; j < triangles.Length; j++)
+                    if (triangles[j] == i)
+                        triangles[j] = index;
             }
+            else
+                mergeIndices.Add(vertexHash, i);
         }
 
-        _normalsUnityHash.Dispose();
+        mesh.triangles = triangles;
 
-        m.normals = _normals.ToArray();
+        var normals = new Vector3[vertices.Length];
 
-        _normals.Dispose();
-        _vertices.Dispose();
+        mesh.RecalculateNormals();
+        var newNormals = mesh.normals;
+
+        for (int i = 0; i < vertices.Length; i++)
+            if (mergeIndices.TryGetValue(vertices[i].GetHashCode(), out var index))
+                normals[i] = newNormals[index];
+
+        mesh.triangles = trianglesOriginal;
+        mesh.normals = normals;
     }
 }
 [Serializable]

@@ -9,6 +9,6 @@ public class ProjectielActSO : SummonActSO
 
         Projectile projectile = Instantiate(Perfab,agent.transform.position,Quaternion.identity) as Projectile;
 
-        projectile.Init(agent.transform.position+dir.normalized*1.05f, dir.normalized, dir.magnitude * PlayerANDAgentStat(agent));// agent.GetCompo<AgentStat>().);
+        projectile.Init(agent.transform.position+dir.normalized*(agent.transform.lossyScale.x+0.05f), dir.normalized, dir.magnitude * PlayerANDAgentStat(agent));// agent.GetCompo<AgentStat>().);
     }
 }

@@ -499,7 +499,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2898664996420168577}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.93, y: -0.41111135, z: 8.95492}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -518,7 +518,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2898664996420168577}
   serializedVersion: 4
-  m_Mass: 2
+  m_Mass: 1.4
   m_Drag: 2.2
   m_AngularDrag: 15
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1168,10 +1168,10 @@ MonoBehaviour:
     OVerrideValue: 1
   - Stat: {fileID: 11400000, guid: ea5a6d2515169c1409b22c8af8a506f2, type: 2}
     IsOverride: 1
-    OVerrideValue: 1
+    OVerrideValue: 2
   - Stat: {fileID: 11400000, guid: 4cc84d2e66452bd4e9ede2e8d3451a58, type: 2}
     IsOverride: 1
-    OVerrideValue: 5
+    OVerrideValue: 7
 --- !u!1 &5382776196374480314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,7 +1565,6 @@ GameObject:
   - component: {fileID: 1394865652882745582}
   - component: {fileID: 4517785319540887358}
   - component: {fileID: 1861798459232557913}
-  - component: {fileID: 3484811080103505020}
   - component: {fileID: 6946901600672326324}
   m_Layer: 5
   m_Name: UI
@@ -1640,23 +1639,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &3484811080103505020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7931600264228387509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &6946901600672326324
 MonoBehaviour:
   m_ObjectHideFlags: 0

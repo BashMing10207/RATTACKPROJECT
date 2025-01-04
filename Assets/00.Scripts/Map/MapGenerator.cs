@@ -8,7 +8,7 @@ using UnityEngine;
 //1~10
 
 //B:--¤¡
-//  0~ :dirt
+//  0~ :dirt  
 //  50~:grass
 //  100~:stone
 //  150~:Ice
@@ -127,7 +127,7 @@ public class MapGenerator : MonoBehaviour
                 int a = (int)((float)(bArray[(_size) * i + j]).b) / 50;
                 Tiles[i, j].ChangeTile(TileType.Dirt + a);
 
-                if ((bArray[(_size) * i + j]).g != 0)
+                if ((bArray[(_size) * i + j]).g == 255)
                 {
                     if (playerCnt < GameManager.Instance.PlayerManagerCompos[0].GetCompo<PlayerAgentManager>().Units.Count)
                     {
@@ -138,10 +138,10 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
 
-                if ((bArray[(_size) * i + j]).a != 0)
+                if ((bArray[(_size) * i + j]).g != 0)
                 {
                     //if (((bArray[(_size) * i + j]).a) < GameManager.Instance.PlayerManagerCompos[1].GetCompo<EnemyGenerator>().CurrentGenEnemyList.Units.Count)
-                    GameManager.Instance.PlayerManagerCompos[1].GetCompo<EnemyGenerator>().GenEnemyies(new Vector3(i * _tileSize, _heightOffset, j * _tileSize), (int)(bArray[(_size) * i + j]).a / 10);
+                    GameManager.Instance.PlayerManagerCompos[1].GetCompo<EnemyGenerator>().GenEnemyies(new Vector3(i * _tileSize, _heightOffset, j * _tileSize), (int)(bArray[(_size) * i + j]).g / 50);
                 }
                 //tiles[i, j].material = _tileMats[];
             }
@@ -174,7 +174,7 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
 
-                if ((bArray[(_size) * i + j]).a != 0)
+                if ((bArray[(_size) * i + j]).a == 0)
                 {
                     //if (((bArray[(_size) * i + j]).a) < GameManager.Instance.PlayerManagerCompos[1].GetCompo<EnemyGenerator>().CurrentGenEnemyList.Units.Count)
                     GameManager.Instance.PlayerManagerCompos[1].GetCompo<EnemyGenerator>().GenEnemyies(new Vector3(i * _tileSize, _heightOffset, j * _tileSize), (int)(bArray[(_size) * i + j]).a / 10);

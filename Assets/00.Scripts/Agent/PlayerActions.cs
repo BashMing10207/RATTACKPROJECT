@@ -89,6 +89,7 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
         Vector3 dir = Quaternion.Euler(0, rot.y, 0) * (BashUtils.V2ToV3(_agentManager.PostMousePos - Mouse.current.position.value).normalized);
         //_skillAnimator.transform.SetPositionAndRotation(_parent.SelectedUnit().WeaponTrm.position ,Quaternion.FromToRotation(Vector3.forward, dir));
         _skillAnimator.transform.position = _agentManager.SelectedUnit().WeaponTrm.position;
+        _skillAnimator.transform.localScale = Vector3.one * _agentManager.SelectedUnit().WeaponTrm.lossyScale.x;
         _skillAnimator.transform.rotation = Quaternion.Lerp(_skillAnimator.transform.rotation, Quaternion.FromToRotation(Vector3.forward, dir), 0.45f);
     }
 
