@@ -16,7 +16,9 @@ public enum ActType
 public abstract class ActSO : ScriptableObject
 {
 
-    public float MinCost = 1f, MaxCost = 10f;
+    public float MinPower = 1f, MaxPower = 10f;
+
+    public int CostPoints = 1;
 
     public string ActName = "";
     [Multiline]

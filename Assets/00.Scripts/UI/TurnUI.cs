@@ -23,7 +23,7 @@ public class TurnUI : MonoBehaviour
     {
         _backGround.color = ((GameManager.Instance.GetCompo<TurnManager>().TurnCount%2) ==0)? _whiteTurnBackGround: _blackTurnBackGround;
         _text.color = ((GameManager.Instance.GetCompo<TurnManager>().TurnCount % 2) == 0) ? _whiteTurnText : _blackTurnText;
-        _text.text = ((GameManager.Instance.GetCompo<TurnManager>().TurnCount % 2) == 0) ? "WHITE TURN" : "BLACK TURN" + $"\n {GameManager.Instance.GetCompo<TurnManager>().TurnCount} Turn ";
+        _text.text = (((GameManager.Instance.GetCompo<TurnManager>().TurnCount % 2) == 0) ? "WHITE TURN" : "BLACK TURN") + $"\n {GameManager.Instance.GetCompo<TurnManager>().TurnCount} Turn ";
         _startAnime.SetTrigger("Enter");
     }
 

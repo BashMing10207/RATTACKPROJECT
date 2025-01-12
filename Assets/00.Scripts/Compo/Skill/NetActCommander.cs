@@ -32,11 +32,11 @@ public class NetActCommander : NetworkBehaviour, IGetCompoable,IAfterInitable
     {
         ActSO act = CurrentAct;
         _manager.GetCompo<SkillAnimator>().SetAnim(act.HashValue);
-        _manager.GetCompo < PlayerActions >().AttackAnim();//상호참조밍
+        _manager.GetCompo < PlayerActions >().AttackAnim();
 
-        float power = Mathf.Clamp(dir.magnitude + act.MinCost, 0f, Mathf.Min(ActionPoint, act.MaxCost));
+        float power = Mathf.Clamp(dir.magnitude + act.MinPower, 0f, Mathf.Min(ActionPoint, act.MaxPower));
 
-        if (power < act.MinCost)
+        if (power < act.MinPower)
         {
             ActFail?.Invoke();
             return;

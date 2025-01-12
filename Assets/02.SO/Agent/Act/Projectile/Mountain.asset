@@ -25,4 +25,4 @@ MonoBehaviour:
   StatModValue: 0.005
   SKillCoollDown: 2
   _affectStat: {fileID: 11400000, guid: ea5a6d2515169c1409b22c8af8a506f2, type: 2}
-  Perfab: {fileID: 9050954676171508603, guid: fae2463af08e0484f8ef56df2dbe66c7, type: 3}
+  Perfab: {fileID: 146785258343500945, guid: 932bede27d1fad24e9492bd4244948ed, type: 3}

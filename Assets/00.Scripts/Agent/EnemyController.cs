@@ -31,6 +31,8 @@ public class EnemyController : MonoBehaviour, IGetCompoable, IAfterInitable
 
     private List<Unit> _enemyUnits => _enemyAgentManager.Units;
     private List<Unit> _playerUnits => _playerAgentManager.Units;
+
+    public int MAXCount = 15;
     public void Initialize(GetCompoParent entity)
     {
         _parent = entity;
@@ -74,17 +76,19 @@ public class EnemyController : MonoBehaviour, IGetCompoable, IAfterInitable
     {
         _itemManager.Items.AddRange(_recycleItems);// 이전 턴에 사용하지 않은(못한) 아이템들
         _recycleItems.Clear();
+        int count = 0;
 
-        while (_itemManager.Items.Count > 0)
+        while (_itemManager.Items.Count > 0&& count < MAXCount )
         {
+            count++;
             yield return new WaitForSeconds(_waitTime);
-            if (_enemyAgentManager.Units.Count <= 0)
+            if (_enemyAgentManager.Units.Count == 0)
             {
-                GameManager.Instance.OnTurnEnd();
                 break;
             }
 
             bool canUse = DoAction();
+
             yield return new WaitForSeconds(0.3f);
             if (canUse) 
             {
@@ -131,9 +135,13 @@ public class EnemyController : MonoBehaviour, IGetCompoable, IAfterInitable
 
                 //    break;
         }
+        _commander.SetAct(CurrentAct);
+
+        print(canUse);
 
         if (!canUse)
             _recycleItems.Add(_itemManager.Items[selectIndex]);
+
         _itemManager.Items.RemoveAt(selectIndex);
 
         return canUse;
@@ -167,6 +175,7 @@ public class EnemyController : MonoBehaviour, IGetCompoable, IAfterInitable
         {
             int rand = Random.Range(0, attackablePairs.Count);
             SelectedUnit = attackablePairs[rand].First;
+            _enemyAgentManager.SelectedUnitIdx = rand;
             ActDir = (attackablePairs[rand].Second.transform.position - attackablePairs[rand].First.transform.position);
 
             ActDir = ActDir.normalized * ActDir.magnitude/1.2f;

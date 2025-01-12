@@ -4856,6 +4856,7 @@ GameObject:
   - component: {fileID: 3061493171244059371}
   - component: {fileID: 9013764994693020066}
   - component: {fileID: -4820507352091909931}
+  - component: {fileID: 7676045452632712556}
   m_Layer: 0
   m_Name: BlackHole (1)
   m_TagString: Untagged
@@ -9735,3 +9736,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e855fcb956ba9f4bbf45afcff347936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7676045452632712556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4441452440172748291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa43efd5a501a6438d9c43e9c3a4226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Power: 0.1
+  _isAffectDistance: 1
+  _maxDistance: 55

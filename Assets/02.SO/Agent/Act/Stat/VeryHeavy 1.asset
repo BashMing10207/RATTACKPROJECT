@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinCost: 1
   MaxCost: 10
-  ActName: Heavy
+  ActName: Heavy2
   Description: "\uBB34\uAC70\uC6CC\uC9C0\uAE30"
   Icon: {fileID: 0}
   AnimParamName: None

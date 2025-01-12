@@ -24,6 +24,10 @@ public class EnemyGenerator : MonoBehaviour, IGetCompoable,IAfterInitable
     {
         if(Type < CurrentGenEnemyList.Units.Count)
         {
+            if (CurrentGenEnemyList.Units[Type]  == null)
+            {
+                return;
+            }
             Unit enemyUnit = Instantiate(CurrentGenEnemyList.IndexOfUnit(Type), pos, Quaternion.identity);
             _enemyManager.AddStone(enemyUnit);
         }

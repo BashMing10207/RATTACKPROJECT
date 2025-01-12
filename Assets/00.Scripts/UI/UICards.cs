@@ -66,7 +66,7 @@ public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IG
     {
         IsSelected = enabled;
         _outLineRenderer.enabled = enabled;
-        _rectTrm.localPosition = enabled ? new Vector3(0, 0, offset) : new Vector3(0, 0, -offset);
+        _rectTrm.localPosition = new Vector3(0, 0, enabled ? offset : -offset);
     }
     public void ToggleOutLine()
     {
@@ -85,7 +85,7 @@ public class UICards : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IG
 
     public void SetAction()
     {
-        _commander.SetAct(Act);
+        //_commander.SetAct(Act);
         _parent.GetCompo<PlayerActions>().SetAction(_type,_index);
     }
 

@@ -6,14 +6,16 @@ using UnityEngine.InputSystem;
 public class ActCommander : MonoBehaviour,IGetCompoable,IAfterInitable
 {
     private GetCompoParent _manager;
+    private AgentManager _agentManager;
 
-    public float ActionPoint = 10f;
+    //public float ActionPoint = 10f;
+    public int ActionPoint = 3;
 
     public Action ActFail;
 
     public ActSO CurrentAct;
 
-    public UnityEvent OnActChangeEvent;
+    public UnityEvent OnActChangeEvent,OnActRunEvent;
     public void Initialize(GetCompoParent entity)
     {
         _manager = entity;
@@ -23,24 +25,48 @@ public class ActCommander : MonoBehaviour,IGetCompoable,IAfterInitable
     public void AfterInit()
     {
         _manager.GetCompo<AgentManager>(true).ActionExcutor += TrySkill;
-
+        _agentManager = _manager.GetCompo<AgentManager>(true);
     }
 
     public void TrySkill(Vector3 dir, ActSO act)
     {
-        float power = Mathf.Clamp(dir.magnitude + act.MinCost, 0f, Mathf.Min(ActionPoint, act.MaxCost));
-
-        if (power < act.MinCost)
+        if(ActionPoint <=0)
         {
-            ActFail?.Invoke();
-            return;
+
         }
 
-        _manager.GetCompo<SkillAnimator>().SetAnim(act.HashValue);
-        _manager.GetCompo<SkillAnimator>().SetAnim("Attack");
-        _manager.GetCompo<AgentManager>(true).SelectedUnit().GetCompo<AgentActCommander>().ExecuteAct(act, dir.normalized * power);
+        ActionPoint = Mathf.Clamp(ActionPoint - act.CostPoints,0,999);
 
-        ActionPoint -= power;
+        float power = Mathf.Clamp(dir.magnitude + act.MinPower, 0f, Mathf.Min(ActionPoint, act.MaxPower));
+
+        // if (power < act.MinCost)
+        //{
+        //    ActFail?.Invoke();
+        //    return;
+        //}
+        OnActRunEvent?.Invoke(); 
+        //_manager.GetCompo<SkillAnimator>().SetAnim(act.HashValue);
+        //_manager.GetCompo<SkillAnimator>().SetAnim("Attack");
+        //_manager.GetCompo<PlayerActions>().AttackAnim();
+       if(_agentManager.Units.Count > _agentManager.SelectedUnitIdx)
+        {
+            _agentManager.SelectedUnit().GetCompo<AgentActCommander>().ExecuteAct(act, dir.normalized * power);
+        }
+        else if (_agentManager.Units.Count ==0)
+        {
+            _manager.GetCompo<GameOverEvent>().GameOver();
+            return;
+        }
+       else
+        {
+            _agentManager.SelectedUnitIdx = _agentManager.Units.Count-1;
+        }
+
+        //ActionPoint -= power;
+        if (ActionPoint > 0)
+        {
+
+        }
     }
 
     public void TrySkill(Vector3 dir)
@@ -54,8 +80,6 @@ public class ActCommander : MonoBehaviour,IGetCompoable,IAfterInitable
         CurrentAct = act;
 
         OnActChangeEvent?.Invoke();
-        ////이 아래는 추후에 다른 스크립트로 빼기(꼭 빼야하는...)
-        //GetCompo<PlayerActions>().
     }
 
 

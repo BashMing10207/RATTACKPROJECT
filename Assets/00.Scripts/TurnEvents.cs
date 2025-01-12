@@ -19,7 +19,10 @@ public class TurnEvents : MonoBehaviour,IGetCompoable,IAfterInitable
     {
         _turnManager = _parent.GetCompo<TurnManager>();
     }
-
+    private void Start()
+    {
+        GameManager.Instance.GetCompo<TurnManager>().OnTurnEndEvent.AddListener(OnTurnENd);
+    }
     public void OnTurnENd()
     {
         if (_turnManager.TurnCount % _cycle == _eventTurn)

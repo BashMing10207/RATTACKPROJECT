@@ -4,8 +4,6 @@ using UnityEngine;
 public class StatChangeSO : ActSO
 {
     [SerializeField]
-    protected StatSO _getImpactStat2This;//이 효과에 영향을 주는 스텟
-    [SerializeField]
     protected StatModifierSO _moidfier;
 
     [SerializeField] 
@@ -15,9 +13,9 @@ public class StatChangeSO : ActSO
         float strength = 1;
         StatModifierSO moidfier = _moidfier;
 
-        if (_getImpactStat2This != null)
+        if (_affectStat != null)
         {
-            StatSO stat = agent.GetCompo<StatManager>().GetStat(_getImpactStat2This.name);
+            StatSO stat = agent.GetCompo<StatManager>().GetStat(_affectStat.name);
             strength = dir.magnitude * stat.Value; //지능 등의 수치를 적용시킬 수 있다 ㅎㅎ
         }
 

@@ -33,6 +33,6 @@ public class PlayerSpawner : MonoBehaviour,IGetCompoable,IAfterInitable
     }
     private void Summon(Unit unit)
     {
-        Instantiate(unit, _agentManager.SelectedUnit().transform.position+new Vector3(0,4,0),Quaternion.identity);
+        _agentManager.AddStone(Instantiate(unit, _agentManager.SelectedUnit().transform.position+new Vector3(0,4,0),Quaternion.identity));
     }
 }

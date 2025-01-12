@@ -27,6 +27,17 @@ public class UIParentActive : MonoBehaviour
         _ui.alpha = enable ? 1 : 0;
         _ui.interactable = enable;
         _ui.blocksRaycasts = enable;
+        if(enable)
         OnActive?.Invoke();
+        else OnDisAble?.Invoke();
+    }
+
+    public void UIActive()
+    {
+
+    }
+    public void UIDIsActive()
+    {
+        UIEnable(false);
     }
 }

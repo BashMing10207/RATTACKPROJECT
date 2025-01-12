@@ -22,8 +22,9 @@ public class SkillAdder : MonoBehaviour, IGetCompoable
     //public List<SetablePair<ActSO, int>> AddSkillList = new(); //직렬화가 안되서 디버그 하기 불편한...
     public List<SkillAndCool> AddSkillList = new();
     [SerializeField]
-    private UnitSkillInitSO _canHaveSkill;
+    private ActGroupSO _canHaveSkill;
 
+    [SerializeField] private int _maxIndex = 25;
 
     private void Start()
     {
@@ -54,7 +55,10 @@ public class SkillAdder : MonoBehaviour, IGetCompoable
     }
     public void SetAddList(ActSO act,int index)
     {
-        AddSkillList[index] =(new(act, act.SKillCoollDown));
+        if (_maxIndex < AddSkillList.Count)
+            RemoveAddList(AddSkillList[0].First);
+
+            AddSkillList[index] =(new(act, act.SKillCoollDown));
     }
 
     public void RemoveAddList(ActSO act)
@@ -65,6 +69,7 @@ public class SkillAdder : MonoBehaviour, IGetCompoable
     public void AddSkill()
     {
         //_playerManager.GetCompo<ItemManager>(true).Items.AddRange(AddSkillList);
+       
         for(int i = 0; i < AddSkillList.Count; i++)
         {
             AddSkillList[i].Second--;

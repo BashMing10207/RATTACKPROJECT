@@ -10,6 +10,7 @@ public class SkillAddWIndow : MonoBehaviour
     {
         if (_addSkillcount <= 0)
             return;
+        gameObject.SetActive(true);
         _addSkillcount--;
         OnAddSkill.Invoke();
     }

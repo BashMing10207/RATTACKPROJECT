@@ -19,18 +19,26 @@ public class SkillSelectUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public bool IsSelected = false;
     public UnityEvent OnClicked;
     public UnityEvent OnEnter;
-    public UnityEvent OnExit;
+    public UnityEvent OnExit, OnAnimeEnd;
+    [SerializeField]
+    private SkillAddManager _skillAddManager;
 
     private RectTransform _rectTrm;
     private GameManager _parent;
     private int _index = 0, _type = 0;
 
+
     private void OnEnable()
     {
         _rectTrm = GetComponent<RectTransform>();
+
         
     }
 
+    public void AnimationEnd()
+    {
+        OnAnimeEnd?.Invoke();
+    }
 
     public void Init(ActSO act, int idx, int type)
     {
@@ -88,6 +96,11 @@ public class SkillSelectUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        OnClicked?.Invoke();    
+        if (!_skillAddManager.IsClicked)
+        {
+            _skillAddManager.IsClicked = true;
+            OnClicked?.Invoke();
+        }
+  
     }
 }

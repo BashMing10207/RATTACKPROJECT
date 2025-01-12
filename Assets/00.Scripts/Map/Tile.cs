@@ -35,9 +35,12 @@ public class Tile : DamageCaster
 
     private IEnumerator DownCorutin(float value)
     {
+        float a = value > 0 ? 1 : -1;
+
+        value = Mathf.Abs(value);
         for (float i = 0; i < value; i+=0.02f)
         {
-            transform.position -= new Vector3(0,0.02f,0);
+            transform.position += new Vector3(0,0.05f*a,0);
             yield return new WaitForSeconds(0.02f);
         }
     }

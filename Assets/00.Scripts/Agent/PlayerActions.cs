@@ -165,28 +165,24 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
     {
         _skillAnimator.SetAnim("Attack");
 
-        for (int i = 0; i < _cards.Count; i++)
-        {
-            if (_itemManager[i].Items.Count > 0)
+            if (_itemManager[_currentActType].Items.Count > 0)
             {
-                if (_currentActType == 1)
-                {
-                    _itemManager[i].Items.RemoveAt(_currentActIdx);
-                }
-                List<ActSO> unitOwnList = _agentManager.SelectedUnit().GetCompo<ItemManager>().Items;
+                
+                _itemManager[_currentActType].Items.RemoveAt(_currentActIdx);
+                //List<ActSO> unitOwnList = _agentManager.SelectedUnit().GetCompo<ItemManager>().Items;
 
-
-                for (int j = 0; j < _cards[0].Count; j++)
+                for (int j = 0; j < _cards[_currentActType].Count; j++)
                 {
-                    bool isExist = unitOwnList.Count > j;
-                    _cards[i][j].SetActive(isExist);
+                    bool isExist = _itemManager[_currentActType].Items.Count > j;
+                    _cards[_currentActType][j].SetActive(isExist);
 
                     if (isExist)
-                        _cards[i][j].Init(unitOwnList[j], j, i);
+                        _cards[_currentActType][j].Init(_itemManager[_currentActType].Items[j], j, _currentActType);
                 }
 
             }
-        }
+        _currentActIdx = 0;
+        _currentActType = 0;
 
             StartCoroutine(RemoveCards());
     }
@@ -204,7 +200,7 @@ public class PlayerActions : MonoBehaviour, IGetCompoable,IAfterInitable
         //}
 
         SetAction(_currentActType, _currentActIdx);
-       // if (_itemManager[_currentActType].Items.Count <= 0)
+        if (_itemManager[_currentActType].Items.Count <= 0)
         {
             _actCommander.CurrentAct = null;
         }

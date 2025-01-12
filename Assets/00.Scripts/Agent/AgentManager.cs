@@ -82,6 +82,14 @@ public class AgentManager : MonoBehaviour, IGetCompoable//GetCompoParent // : Ma
         {
             SwapUnit(Units.IndexOf(slected));
         }
+        else if(Units.Count == 0)
+        {
+            _parent.GetCompo<GameOverEvent>().GameOver();
+            Destroy(unit.gameObject);
+
+            OnUnitDieEvent?.Invoke();
+            return;
+        }
         else
         {
 
