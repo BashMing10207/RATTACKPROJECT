@@ -24,17 +24,17 @@ public class UIParentActive : MonoBehaviour
     }
     public void UIEnable(bool enable)
     {
-        _ui.alpha = enable ? 1 : 0;
-        _ui.interactable = enable;
-        _ui.blocksRaycasts = enable;
+        UIActive(enable);
         if(enable)
         OnActive?.Invoke();
         else OnDisAble?.Invoke();
     }
 
-    public void UIActive()
+    public void UIActive(bool enable)
     {
-
+        _ui.alpha = enable ? 1 : 0;
+        _ui.interactable = enable;
+        _ui.blocksRaycasts = enable;
     }
     public void UIDIsActive()
     {
