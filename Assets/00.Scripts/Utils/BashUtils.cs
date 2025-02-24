@@ -1,11 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
-using Unity.Entities.UniversalDelegates;
-using Unity.Mathematics;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class BashUtils
 {
