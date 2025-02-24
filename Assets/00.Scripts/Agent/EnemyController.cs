@@ -87,15 +87,23 @@ public class EnemyController : MonoBehaviour, IGetCompoable, IAfterInitable
                 break;
             }
 
+            yield return new WaitForSeconds(0.3f);
             bool canUse = DoAction();
 
-            yield return new WaitForSeconds(0.3f);
             if (canUse) 
             {
                 _cameraManager.SetVCamTarget(SelectedUnit.ViewPivot);
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.7f);
+
+                while(!_enemyAgentManager.Units.Contains(SelectedUnit))
+                {
+                    DoAction();
+                    _cameraManager.SetVCamTarget(SelectedUnit.ViewPivot);
+                }
+
                 RunAction();
             }
+            yield return new WaitForSeconds(0.3f);
         }
 
         GameManager.Instance.OnTurnEnd();
@@ -175,7 +183,11 @@ public class EnemyController : MonoBehaviour, IGetCompoable, IAfterInitable
         {
             int rand = Random.Range(0, attackablePairs.Count);
             SelectedUnit = attackablePairs[rand].First;
-            _enemyAgentManager.SelectedUnitIdx = rand;
+            if(SelectedUnit != null)
+            {
+
+            }
+            _enemyAgentManager.SelectedUnitIdx = _enemyAgentManager.Units.IndexOf(SelectedUnit);
             ActDir = (attackablePairs[rand].Second.transform.position - attackablePairs[rand].First.transform.position);
 
             ActDir = ActDir.normalized * ActDir.magnitude/1.2f;

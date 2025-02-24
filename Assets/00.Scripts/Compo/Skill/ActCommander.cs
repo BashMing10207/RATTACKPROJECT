@@ -48,18 +48,20 @@ public class ActCommander : MonoBehaviour,IGetCompoable,IAfterInitable
         //_manager.GetCompo<SkillAnimator>().SetAnim(act.HashValue);
         //_manager.GetCompo<SkillAnimator>().SetAnim("Attack");
         //_manager.GetCompo<PlayerActions>().AttackAnim();
-       if(_agentManager.Units.Count > _agentManager.SelectedUnitIdx)
-        {
-            _agentManager.SelectedUnit().GetCompo<AgentActCommander>().ExecuteAct(act, dir.normalized * power);
-        }
-        else if (_agentManager.Units.Count ==0)
+       if (_agentManager.Units.Count == 0) 
         {
             _manager.GetCompo<GameOverEvent>().GameOver();
             return;
         }
+        else if (_agentManager.Units.Count >= _agentManager.SelectedUnitIdx)
+        {
+
+            _agentManager.SelectedUnit().GetCompo<AgentActCommander>().ExecuteAct(act, dir.normalized * power);
+
+        }
        else
         {
-            _agentManager.SelectedUnitIdx = _agentManager.Units.Count-1;
+            _agentManager.SelectedUnitIdx = Mathf.Max(0,_agentManager.Units.Count);
         }
 
         //ActionPoint -= power;
